@@ -5,7 +5,6 @@ public class Tile : MonoBehaviour
 
   [SerializeField] private bool walkable = true;
   [SerializeField] private bool flyable = true;
-  [SerializeField] private bool occupied = false;
   [SerializeField] private bool current = false;
   [SerializeField] private int cost = 1;
   [SerializeField] private GameObject occupier;
@@ -26,14 +25,37 @@ public class Tile : MonoBehaviour
         
   }
 
+  //some tiles may be null
   public Tile[] getAdjacentTiles()
   {
     return new Tile[4] {forwardTile, rightTile, backTile, leftTile};
   }
 
+  public GameObject getOccupier()
+  {
+    return occupier;
+  }
+
+  // return false if tile is already occupied by other object
+  public bool setOccupier(GameObject occupier)
+  {
+    if (isOccupied() && this.occupier != occupier)
+    {
+      return false;
+    }
+
+    this.occupier = occupier;
+    return true;
+  }
+
+  public void removeOccupier()
+  {
+    occupier = null;
+  }
+
   public bool isOccupied()
   {
-    return occupied;
+    return occupier != null;
   }
 
   public bool isWalkable()
@@ -53,7 +75,7 @@ public class Tile : MonoBehaviour
 
     foreach (Collider collider in adjacentColliders)
     {
-      if (collider.gameObject != null && collider.gameObject.tag == "Tile")
+      if (collider.gameObject != null && collider.gameObject.tag.Equals("Tile"))
       {
         GameObject tile = collider.gameObject;
         float deltaX = tile.transform.position.x - transform.position.x;
