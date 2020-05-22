@@ -1,81 +1,67 @@
-﻿using UnityEngine;
+﻿using System.Linq;
+using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
 
-  [SerializeField] private bool walkable = true;
-  [SerializeField] private bool flyable = true;
-  [SerializeField] private bool current = false;
-  [SerializeField] private int cost = 1;
-  [SerializeField] private GameObject occupier;
-  private Tile forwardTile;
-  private Tile rightTile;
-  private Tile leftTile;
-  private Tile backTile;
+  public bool Walkable { get; set; } = true;
+  public bool Flyable { get; set; } = true;
+  public bool Current { get; set; } = false;
+  public int Cost { get; } = 1;
+  [SerializeField] private GameObject _occupier;
+  private Tile _forwardTile;
+  private Tile _rightTile;
+  private Tile _leftTile;
+  private Tile _backTile;
 
   // Start is called before the first frame update
   void Start()
   {
-    findAdjacentTiles();
-  }
-
-  // Update is called once per frame
-  void Update()
-  {
-        
+    FindAdjacentTiles();
   }
 
   //some tiles may be null
-  public Tile[] getAdjacentTiles()
+  public Tile[] GetAdjacentTiles()
   {
-    return new Tile[4] {forwardTile, rightTile, backTile, leftTile};
+    return new Tile[4] {_forwardTile, _rightTile, _backTile, _leftTile}
+      .Where(t => t != null).ToArray();
   }
 
-  public GameObject getOccupier()
+  public GameObject GetOccupier()
   {
-    return occupier;
+    return _occupier;
   }
 
   // return false if tile is already occupied by other object
-  public bool setOccupier(GameObject occupier)
+  public bool SetOccupier(GameObject occupier)
   {
-    if (isOccupied() && this.occupier != occupier)
+    if (IsOccupied() && this._occupier != occupier)
     {
       return false;
     }
 
-    this.occupier = occupier;
+    this._occupier = occupier;
     return true;
   }
 
-  public void removeOccupier()
+  public void RemoveOccupier()
   {
-    occupier = null;
+    _occupier = null;
   }
 
-  public bool isOccupied()
+  public bool IsOccupied()
   {
-    return occupier != null;
+    return _occupier != null;
   }
 
-  public bool isWalkable()
-  {
-    return walkable;
-  }
-
-  public bool isFlyable()
-  {
-    return flyable;
-  }
-
-  private void findAdjacentTiles()
+  private void FindAdjacentTiles()
   {
     Collider[] adjacentColliders
       = Physics.OverlapSphere(transform.position, transform.localScale.x * 1.1f);
 
     foreach (Collider collider in adjacentColliders)
     {
-      if (collider.gameObject != null && collider.gameObject.tag.Equals("Tile"))
+      if (collider.gameObject != null && collider.gameObject.CompareTag("Tile"))
       {
         GameObject tile = collider.gameObject;
         float deltaX = tile.transform.position.x - transform.position.x;
@@ -83,13 +69,13 @@ public class Tile : MonoBehaviour
         switch (deltaX * 3 + deltaZ)
         {
           case 3:
-            rightTile = tile.GetComponent<Tile>(); break;
+            _rightTile = tile.GetComponent<Tile>(); break;
           case -3:
-            leftTile = tile.GetComponent<Tile>(); break;
+            _leftTile = tile.GetComponent<Tile>(); break;
           case 1:
-            forwardTile = tile.GetComponent<Tile>(); break;
+            _forwardTile = tile.GetComponent<Tile>(); break;
           case -1:
-            backTile = tile.GetComponent<Tile>(); break;
+            _backTile = tile.GetComponent<Tile>(); break;
           default:
             break;
         }

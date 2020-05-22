@@ -2,58 +2,53 @@
 
 public class Unit : MonoBehaviour
 {
-  [SerializeField] private int health = 50;
-  [SerializeField] private int movement = 1;
-  [SerializeField] private bool flyier = false;
-  [SerializeField] private Tile occupiedTile;
-  [SerializeField] private int militant_side;
+  [SerializeField] private int _health = 50;
+  [SerializeField] private int _movement = 1;
+  [SerializeField] private bool _flyier = false;
+  [SerializeField] private Tile _occupiedTile;
+  [SerializeField] private int _group;
 
   // Start is called before the first frame update
   void Start()
   {
-    setTile();
+    UpdateTile();
   }
 
-  // Update is called once per frame
-  void Update()
+  public Tile GetOccupiedTile()
   {
-        
+    return _occupiedTile;
   }
 
-  public Tile getOccupiedTile()
+  public int GetMovement()
   {
-    return occupiedTile;
+    return _movement;
   }
 
-  public int getMovement()
+  public int GetGroup()
   {
-    return movement;
+    return _group;
   }
 
-  public int getMilitantSide()
+  public void FreeTile()
   {
-    return militant_side;
-  }
-
-  public void freeTile()
-  {
-    occupiedTile.removeOccupier();
-    occupiedTile = null;
+    _occupiedTile.RemoveOccupier();
+    _occupiedTile = null;
   } 
 
-  public bool setTile()
+  //frees tile currently occupied and sets occupied tile to correct tile
+  public bool UpdateTile()
   {
     Collider[] colliders = Physics.OverlapSphere(
       new Vector3(transform.position.x, 0.0f, transform.position.z), 0.0f);
 
     foreach (Collider collider in colliders)
     {
-      if(collider.gameObject != null && collider.gameObject.tag.Equals("Tile"))
+      if(collider.gameObject != null && collider.gameObject.CompareTag("Tile"))
       {
-        if (collider.gameObject.GetComponent<Tile>().setOccupier(this.gameObject))
+        if (collider.gameObject.GetComponent<Tile>().SetOccupier(this.gameObject))
         {
-          if(occupiedTile != null) freeTile();
-          occupiedTile = collider.gameObject.GetComponent<Tile>();
+          if(_occupiedTile != null) FreeTile();
+          _occupiedTile = collider.gameObject.GetComponent<Tile>();
           return true;
         }
       }
@@ -62,10 +57,11 @@ public class Unit : MonoBehaviour
     return false;
   }
 
-  public bool canPass (Tile tile)
+  //checks if unit can pass given tile
+  public bool CanPass (Tile tile)
   {
-    return !(tile.isOccupied() && tile.getOccupier().tag != gameObject.tag) 
-      && (tile.isWalkable() || (tile.isFlyable() && flyier));
+    return !(tile.IsOccupied() && tile.GetOccupier().CompareTag(gameObject.tag)) 
+      && (tile.Walkable || (tile.Flyable && _flyier));
   }
 
 

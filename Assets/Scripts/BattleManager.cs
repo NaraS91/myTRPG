@@ -1,13 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
+using System.Dynamic;
 using UnityEngine;
 
-public class MapManager : MonoBehaviour
+public class BattleManager : MonoBehaviour
 {
 
-  [SerializeField] public ISet<Tile> bfsCheck;
-  GameObject player;
+  public List<ISet<FightingUnit>> FightingGroups { get; set; }
 
   // Start is called before the first frame update
   void Start()
@@ -21,14 +19,14 @@ public class MapManager : MonoBehaviour
 
   }
 
-  private ISet<Tile> findViableMoves(Unit unit)
+  private ISet<Tile> FindViableMoves(Unit unit)
   {
     ISet<Tile> result = new HashSet<Tile>();
     Dictionary<Tile, int> distances = new Dictionary<Tile, int>();
     Queue<Tile> queue = new Queue<Tile>();
-    int movement = unit.getMovement();
+    int movement = unit.GetMovement();
 
-    Tile curr = unit.getOccupiedTile();
+    Tile curr = unit.GetOccupiedTile();
     queue.Enqueue(curr);
     distances.Add(curr, 0);
 
@@ -38,19 +36,18 @@ public class MapManager : MonoBehaviour
       if (distances[curr] > movement) break;
 
       result.Add(curr);
-      Tile[] adjacentTiles
-        = curr.getAdjacentTiles().Where(t => t != null).ToArray();
+      Tile[] adjacentTiles = curr.GetAdjacentTiles();
       int distance = distances[curr];
 
       foreach (Tile tile in adjacentTiles)
       {
         if (!distances.ContainsKey(tile))
         {
-          if (unit.canPass(tile))
+          if (unit.CanPass(tile))
           {
             queue.Enqueue(tile);
             distances.Add(tile, distance + 1);
-          } else if (tile.isOccupied())
+          } else if (tile.IsOccupied())
           {
             //TODO: handle situation when objects with different tags meet
           }

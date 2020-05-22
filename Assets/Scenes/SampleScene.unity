@@ -166,11 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &20142825
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -276,11 +272,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &40307663
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -386,11 +378,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &119959229
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -496,11 +484,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &134334984
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -606,11 +590,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &155941810
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -716,11 +696,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &181534124
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -826,11 +802,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &215909928
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -936,11 +908,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &221655808
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1046,11 +1014,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &222828208
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1156,11 +1120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &227483223
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1396,11 +1356,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &274365309
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1506,11 +1462,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &281879931
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1616,11 +1568,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &334226309
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1726,11 +1674,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &359021053
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1836,11 +1780,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &378633405
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1946,11 +1886,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &401685575
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2056,11 +1992,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &402964810
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2166,11 +2098,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &408231004
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2276,11 +2204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &411953524
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2386,11 +2310,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &523534687
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2496,11 +2416,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &542484169
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2606,11 +2522,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &562968915
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2716,11 +2628,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &568947660
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2826,11 +2734,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &569158350
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2922,11 +2826,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28bf3e6e543f16d4bbeaa1321ca8a1d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 50
-  movement: 5
-  flyier: 0
-  occupiedTile: {fileID: 0}
-  militant_side: 0
+  _health: 50
+  _movement: 1
+  _flyier: 0
+  _occupiedTile: {fileID: 0}
+  _group: 0
 --- !u!136 &600627909
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -3047,11 +2951,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &601223482
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3157,11 +3057,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &606419795
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3267,11 +3163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &615698426
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3377,11 +3269,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &636729488
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3487,11 +3375,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &654701519
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3597,11 +3481,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &694664981
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3707,11 +3587,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &713350539
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3817,11 +3693,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &739364244
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3927,11 +3799,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &769580020
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4037,11 +3905,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &771045665
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4147,11 +4011,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &782098907
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4257,11 +4117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &792943778
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4367,11 +4223,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &803932262
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4477,11 +4329,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &819965327
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4587,11 +4435,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &825086989
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4697,11 +4541,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &837260180
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4807,11 +4647,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &848001362
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4917,11 +4753,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &857775987
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5027,11 +4859,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &864081298
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5137,11 +4965,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &878361857
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5247,11 +5071,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &936170707
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5423,14 +5243,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 996397955}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28bf3e6e543f16d4bbeaa1321ca8a1d0, type: 3}
+  m_Script: {fileID: 11500000, guid: 168a4ee2ac1931546a5569f528120fd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 50
-  movement: 5
-  flyier: 0
-  occupiedTile: {fileID: 0}
-  militant_side: 0
+  _health: 50
+  _movement: 1
+  _flyier: 0
+  _occupiedTile: {fileID: 0}
+  _group: 0
+  _attack: 0
+  _defense: 0
 --- !u!136 &996397957
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -5552,11 +5374,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &998240166
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5662,11 +5480,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &1014222899
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5772,11 +5586,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &1039878976
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5882,11 +5692,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &1054476867
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5992,11 +5798,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &1123460665
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6102,11 +5904,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &1130501401
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6212,11 +6010,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &1138418929
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6322,11 +6116,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &1146416839
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6432,11 +6222,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &1159141835
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6542,11 +6328,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &1164402626
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6652,11 +6434,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &1184773511
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6762,11 +6540,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &1203063876
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6872,11 +6646,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &1229636626
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6982,11 +6752,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &1250810708
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7092,11 +6858,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &1296446335
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7202,11 +6964,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &1317983015
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7312,11 +7070,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &1345553208
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7422,11 +7176,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &1354661405
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7532,11 +7282,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &1365252826
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7642,11 +7388,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &1406667587
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7752,11 +7494,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &1502071770
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7862,11 +7600,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &1502088272
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7972,11 +7706,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &1564714906
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8082,11 +7812,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &1572396794
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8192,11 +7918,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &1603565756
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8302,11 +8024,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &1611333959
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8455,11 +8173,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &1629100896
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8565,11 +8279,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &1629813065
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8675,11 +8385,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &1631608458
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8785,11 +8491,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &1640211709
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8895,11 +8597,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &1643093998
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9005,11 +8703,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &1655179656
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9115,11 +8809,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &1655273272
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9225,11 +8915,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &1655420414
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9335,11 +9021,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &1707785302
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9445,11 +9127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &1713252550
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9555,11 +9233,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &1717791990
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9665,11 +9339,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &1741021909
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9775,11 +9445,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &1776774311
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9885,11 +9551,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &1782485766
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9995,11 +9657,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &1812301721
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10105,11 +9763,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &1834770670
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10215,11 +9869,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &1841695978
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10325,11 +9975,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &1860920723
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10435,11 +10081,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &1867177144
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10545,11 +10187,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &1890224136
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10655,11 +10293,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &1957851411
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10765,11 +10399,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &1985998193
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10875,11 +10505,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &1990638659
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10985,11 +10611,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &1995187581
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11095,11 +10717,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &2024283434
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11205,11 +10823,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &2064981187
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11315,11 +10929,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &2103154671
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11425,11 +11035,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &2105649875
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11535,11 +11141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9cd01e01e17f4db3a1cf55d202a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 1
-  flyable: 1
-  current: 0
-  cost: 1
-  occupier: {fileID: 0}
+  _occupier: {fileID: 0}
 --- !u!65 &2140903607
 BoxCollider:
   m_ObjectHideFlags: 0
