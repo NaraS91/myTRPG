@@ -2,11 +2,13 @@
 
 public class Unit : MonoBehaviour
 {
-  [SerializeField] private int _health = 50;
-  [SerializeField] private int _movement = 1;
-  [SerializeField] private bool _flyier = false;
-  [SerializeField] private Tile _occupiedTile;
-  [SerializeField] private int _group;
+  public int Health { get; set; } = 50;
+  public int Movement { get; set; } = 1;
+  public bool Flyier { get; set; } = false;
+  public Tile OccupiedTile { get; set; }
+  public string Group { get; set; }
+  public bool Selectable { get; set; }
+  public bool Selected;
 
   // Start is called before the first frame update
   void Start()
@@ -14,25 +16,10 @@ public class Unit : MonoBehaviour
     UpdateTile();
   }
 
-  public Tile GetOccupiedTile()
-  {
-    return _occupiedTile;
-  }
-
-  public int GetMovement()
-  {
-    return _movement;
-  }
-
-  public int GetGroup()
-  {
-    return _group;
-  }
-
   public void FreeTile()
   {
-    _occupiedTile.RemoveOccupier();
-    _occupiedTile = null;
+    OccupiedTile.RemoveOccupier();
+    OccupiedTile = null;
   } 
 
   //frees tile currently occupied and sets occupied tile to correct tile
@@ -47,8 +34,8 @@ public class Unit : MonoBehaviour
       {
         if (collider.gameObject.GetComponent<Tile>().SetOccupier(this.gameObject))
         {
-          if(_occupiedTile != null) FreeTile();
-          _occupiedTile = collider.gameObject.GetComponent<Tile>();
+          if(OccupiedTile != null) FreeTile();
+          OccupiedTile = collider.gameObject.GetComponent<Tile>();
           return true;
         }
       }
@@ -61,7 +48,7 @@ public class Unit : MonoBehaviour
   public bool CanPass (Tile tile)
   {
     return !(tile.IsOccupied() && tile.GetOccupier().CompareTag(gameObject.tag)) 
-      && (tile.Walkable || (tile.Flyable && _flyier));
+      && (tile.Walkable || (tile.Flyable && Flyier));
   }
 
 

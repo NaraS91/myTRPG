@@ -5,8 +5,8 @@ using UnityEngine;
 public class FightingUnit : Unit
 {
   //TODO: update stats!
-  [SerializeField]private int _attack;
-  [SerializeField] private int _defense;
+  private int Attack { get; set; }
+  private int Defense { get; set; }
 
   // Start is called before the first frame update
   void Start()

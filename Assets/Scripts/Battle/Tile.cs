@@ -8,7 +8,7 @@ public class Tile : MonoBehaviour
   public bool Flyable { get; set; } = true;
   public bool Current { get; set; } = false;
   public int Cost { get; } = 1;
-  [SerializeField] private GameObject _occupier;
+  private GameObject _occupier;
   private Tile _forwardTile;
   private Tile _rightTile;
   private Tile _leftTile;
