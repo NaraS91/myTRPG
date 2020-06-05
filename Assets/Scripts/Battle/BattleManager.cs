@@ -1,53 +1,53 @@
 ﻿using System.Collections.Generic;
-using System.Dynamic;
 using UnityEngine;
 
 public class BattleManager : MonoBehaviour
 {
-
+  public const int TILES_LAYER = 1 << 8;
   public Dictionary<string, ISet<Unit>> Groups;
   public List<string> TurnQueue;
   public int activeGroup;
-  public Object overlay;
-  public Tile selectedTile { get; set; }
+  public GameObject CursorObject;
+  private Cursor Cursor;
+  public bool Selected = false;
 
   // Start is called before the first frame update
   void Start()
   {
+    Cursor = CursorObject.GetComponent<Cursor>();
     activeGroup = -1;
    // BeginNextTurn();
-    if (!SelectStartingTile())
-    {
-      print("tile at position (0, 0, 0) is required");
-    } else
-    {
-      SetOverlay();
-    }
+  }
+
+  private void FixedUpdate()
+  {
   }
 
   // Update is called once per frame
   void Update()
   {
+    HandleInput();
+  }
+
+  void ShowUnitMenu()
+  {
 
   }
 
-  private bool SelectStartingTile()
+  void HandleInput()
   {
-    Collider[] colliders = Physics.OverlapSphere(new Vector3(0, 0, 0), 0);
-    foreach(Collider collider in colliders)
+    if (Input.GetButtonDown("Select"))
     {
-      if(collider.gameObject.GetComponent<Tile>() != null)
+      if (!Selected)
       {
-        selectedTile = collider.gameObject.GetComponent<Tile>();
+        Cursor.enabled = false;
+        Selected = true;
+        ShowUnitMenu();
+      } else
+      {
+        //TODO: ui management
       }
     }
-
-    return selectedTile != null;
-  }
-
-  private void SetOverlay()
-  {
-    Object.Instantiate(overlay, selectedTile.transform);
   }
 
   private void BeginNextTurn()

@@ -26,7 +26,8 @@ public class Unit : MonoBehaviour
   public bool UpdateTile()
   {
     Collider[] colliders = Physics.OverlapSphere(
-      new Vector3(transform.position.x, 0.0f, transform.position.z), 0.0f);
+      new Vector3(transform.position.x, 0.0f, transform.position.z),
+      0.0f, BattleManager.TILES_LAYER);
 
     foreach (Collider collider in colliders)
     {
