@@ -1187,10 +1187,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59888133813affa4fbdeab3adc2c834a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
+  Speed: 5
   Overlay: {fileID: 1604152489}
   HoveredTile: {fileID: 0}
   SelectedTile: {fileID: 0}
+  rangeOverlay: {fileID: 502518589555086868, guid: 00ede0103e8cfaf409080a79ae2baa8f,
+    type: 3}
 --- !u!1 &200384750
 GameObject:
   m_ObjectHideFlags: 0
@@ -8584,7 +8586,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TurnQueue: []
-  activeGroup: 0
+  ActiveGroup: 0
   CursorObject: {fileID: 115756002}
   Selected: 0
 --- !u!4 &1611587764
@@ -9662,6 +9664,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Overlay
+      objectReference: {fileID: 0}
+    - target: {fileID: 1517625967664799914, guid: 73cb40278d759f44288d85940b30917d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3486256404851536928, guid: 73cb40278d759f44288d85940b30917d,
         type: 3}

@@ -3,10 +3,10 @@
 public class Unit : MonoBehaviour
 {
   public int Health { get; set; } = 50;
-  public int Movement { get; set; } = 1;
+  public int Movement { get; set; } = 4;
   public bool Flyier { get; set; } = false;
   public Tile OccupiedTile { get; set; }
-  public string Group { get; set; }
+  public int Group { get; set; }
   public bool Selectable { get; set; }
   public bool Selected;
 
@@ -33,7 +33,7 @@ public class Unit : MonoBehaviour
     {
       if(collider.gameObject != null && collider.gameObject.CompareTag("Tile"))
       {
-        if (collider.gameObject.GetComponent<Tile>().SetOccupier(this.gameObject))
+        if (collider.gameObject.GetComponent<Tile>().SetOccupier(this))
         {
           if(OccupiedTile != null) FreeTile();
           OccupiedTile = collider.gameObject.GetComponent<Tile>();
@@ -48,7 +48,7 @@ public class Unit : MonoBehaviour
   //checks if unit can pass given tile
   public bool CanPass (Tile tile)
   {
-    return !(tile.IsOccupied() && tile.GetOccupier().CompareTag(gameObject.tag)) 
+    return !(tile.IsOccupied() && tile.Occupier.Group != Group) 
       && (tile.Walkable || (tile.Flyable && Flyier));
   }
 

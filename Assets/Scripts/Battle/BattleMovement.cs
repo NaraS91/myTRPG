@@ -2,20 +2,20 @@
 
 public class BattleMovement
 {
-  public ISet<Tile> FindViableMoves(Unit unit)
+  public static ISet<Tile> FindViableMoves(Unit unit)
   {
     ISet<Tile> result = new HashSet<Tile>();
     Dictionary<Tile, int> distances = new Dictionary<Tile, int>();
-    Queue<Tile> queue = new Queue<Tile>();
+    Queue<Tile> tilesToProcess = new Queue<Tile>();
     int movement = unit.Movement;
 
     Tile curr = unit.OccupiedTile;
-    queue.Enqueue(curr);
+    tilesToProcess.Enqueue(curr);
     distances.Add(curr, 0);
 
-    while (queue.Count > 0)
+    while (tilesToProcess.Count > 0)
     {
-      curr = queue.Dequeue();
+      curr = tilesToProcess.Dequeue();
       if (distances[curr] > movement) break;
 
       result.Add(curr);
@@ -28,12 +28,12 @@ public class BattleMovement
         {
           if (unit.CanPass(tile))
           {
-            queue.Enqueue(tile);
+            tilesToProcess.Enqueue(tile);
             distances.Add(tile, distance + 1);
           }
           else if (tile.IsOccupied())
           {
-            //TODO: handle situation when objects with different tags meet
+            //TODO: units from different groups meet
           }
         }
       }

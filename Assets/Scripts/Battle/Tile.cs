@@ -8,7 +8,7 @@ public class Tile : MonoBehaviour
   public bool Flyable { get; set; } = true;
   public bool Current { get; set; } = false;
   public int Cost { get; } = 1;
-  private GameObject _occupier;
+  public Unit Occupier { get; private set; }
   public Tile ForwardTile { get; private set; }
   public Tile RightTile { get; private set; }
   public Tile LeftTile { get; private set; }
@@ -27,31 +27,26 @@ public class Tile : MonoBehaviour
       .Where(t => t != null).ToArray();
   }
 
-  public GameObject GetOccupier()
-  {
-    return _occupier;
-  }
-
   // return false if tile is already occupied by other object
-  public bool SetOccupier(GameObject occupier)
+  public bool SetOccupier(Unit Occupier)
   {
-    if (IsOccupied() && this._occupier != occupier)
+    if (IsOccupied() && this.Occupier != Occupier)
     {
       return false;
     }
 
-    _occupier = occupier;
+    this.Occupier = Occupier;
     return true;
   }
 
   public void RemoveOccupier()
   {
-    _occupier = null;
+    Occupier = null;
   }
 
   public bool IsOccupied()
   {
-    return _occupier != null;
+    return Occupier != null;
   }
 
   private void FindAdjacentTiles()

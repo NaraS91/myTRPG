@@ -6,7 +6,7 @@ public class BattleManager : MonoBehaviour
   public const int TILES_LAYER = 1 << 8;
   public Dictionary<string, ISet<Unit>> Groups;
   public List<string> TurnQueue;
-  public int activeGroup;
+  public int ActiveGroup;
   public GameObject CursorObject;
   private Cursor Cursor;
   public bool Selected = false;
@@ -15,7 +15,7 @@ public class BattleManager : MonoBehaviour
   void Start()
   {
     Cursor = CursorObject.GetComponent<Cursor>();
-    activeGroup = -1;
+    ActiveGroup = -1;
    // BeginNextTurn();
   }
 
@@ -52,8 +52,8 @@ public class BattleManager : MonoBehaviour
 
   private void BeginNextTurn()
   {
-    activeGroup = (activeGroup + 1) % TurnQueue.Count;
-    foreach(Unit unit in Groups[TurnQueue[activeGroup]])
+    ActiveGroup = (ActiveGroup + 1) % TurnQueue.Count;
+    foreach(Unit unit in Groups[TurnQueue[ActiveGroup]])
     {
       unit.Selectable = true;
     }
@@ -61,7 +61,7 @@ public class BattleManager : MonoBehaviour
 
   private void EndTurn()
   {
-    foreach (Unit unit in Groups[TurnQueue[activeGroup]])
+    foreach (Unit unit in Groups[TurnQueue[ActiveGroup]])
     {
       unit.Selectable = false;
     }
