@@ -1,7 +1,44 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class BattleMovement
 {
+  private static List<Tile> _path = new List<Tile>();
+
+  public static void ResetPath()
+  {
+    _path.Clear();
+  }
+
+  //PRE: tile is in range of unit
+  public static void AddTile(Tile tile, Unit unit)
+  {
+    if(unit.Movement < _path.Count + 1)
+    {
+      RecalculatePath(unit, tile);
+    } else
+    {
+      _path.Add(tile);
+    }
+  }
+  
+  public static void ShowPath()
+  {
+    foreach(Tile tile in _path)
+    {
+      tile.gameObject.GetComponent<MeshRenderer>().material.color = Color.blue;
+    }
+  }
+
+  public static void HidePath()
+  {
+    foreach (Tile tile in _path)
+    {
+      tile.gameObject.GetComponent<MeshRenderer>().material.color = Color.white;
+    }
+  }
+
   public static ISet<Tile> FindViableMoves(Unit unit)
   {
     ISet<Tile> result = new HashSet<Tile>();
@@ -40,5 +77,12 @@ public class BattleMovement
     }
 
     return result;
+  }
+
+  private static void RecalculatePath(Unit unit, Tile tile)
+  {
+    //TODO: implement recalculating path
+    HidePath();
+    ResetPath();
   }
 }

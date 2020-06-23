@@ -7,14 +7,20 @@ public class BattleManager : MonoBehaviour
   public Dictionary<string, ISet<Unit>> Groups;
   public List<string> TurnQueue;
   public int ActiveGroup;
+  public static GameObject DefaultOverlay;
   public GameObject CursorObject;
-  private Cursor Cursor;
-  public bool Selected = false;
+  private Cursor _cursor;
+  public bool MenuIsUp { get; private set; } = false;
+
+  private void Awake()
+  {
+    _cursor = CursorObject.GetComponent<Cursor>();
+    DefaultOverlay = _cursor.Overlay;
+  }
 
   // Start is called before the first frame update
   void Start()
   {
-    Cursor = CursorObject.GetComponent<Cursor>();
     ActiveGroup = -1;
    // BeginNextTurn();
   }
@@ -38,11 +44,22 @@ public class BattleManager : MonoBehaviour
   {
     if (Input.GetButtonDown("Select"))
     {
-      if (!Selected)
+      if (!MenuIsUp)
       {
-        Cursor.enabled = false;
-        Selected = true;
-        ShowUnitMenu();
+        if (_cursor.UnitIsSelected)
+        {
+
+        }
+        else if (_cursor.HoveredTile.IsOccupied())
+        {
+          _cursor.SelectUnit();
+        }
+        else
+        {
+          _cursor.enabled = false;
+          MenuIsUp = true;
+          ShowUnitMenu();
+        }
       } else
       {
         //TODO: ui management

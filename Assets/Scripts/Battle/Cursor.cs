@@ -7,12 +7,12 @@ public class Cursor : MonoBehaviour
   public int Speed;
   public GameObject Overlay;
   public Tile HoveredTile;
-  public Tile SelectedTile;
-  private bool _newSelectedTile;
+  public Unit SelectedUnit;
+  private bool _hoverOverNewTile;
+  public bool UnitIsSelected { get; private set; } = false;
 
-  public GameObject rangeOverlay;
-  private List<GameObject> _unitRangeOverlays = new List<GameObject>();
-  private int _activeOverlays = 0;
+  public Material rangeOverlayMaterial;
+  private ISet<Tile> _rangeTiles = new HashSet<Tile>();
 
   // Start is called before the first frame update
   void Start()
@@ -27,51 +27,64 @@ public class Cursor : MonoBehaviour
   // Update is called once per frame
   void Update()
   {
-    moveCursor();
-    if (_newSelectedTile)
+    MoveCursor();
+    if (_hoverOverNewTile)
     {
-      if(_activeOverlays > 0)
+      if (UnitIsSelected)
       {
-        disableOverlays();
+        if (_rangeTiles.Contains(HoveredTile))
+        {
+          BattleMovement.AddTile(HoveredTile, SelectedUnit);
+          BattleMovement.ShowPath();
+        }
+      }
+      else
+      {
+        UpdateOverlays();
       }
 
-      if (SelectedTile.IsOccupied())
-      {
-        ISet<Tile> unitRangeTiles
-          = BattleMovement.FindViableMoves(SelectedTile.Occupier);
-        enableOverlays(unitRangeTiles);
-      }
-
-      _newSelectedTile = false;
+      _hoverOverNewTile = false;
     }
 
   }
 
-  private void disableOverlays()
+  public void SelectUnit()
   {
-    for (int i = 0; i < _activeOverlays; i++)
+    SelectedUnit = HoveredTile.Occupier;
+    UnitIsSelected = true;
+  }
+
+  private void UpdateOverlays()
+  {
+    if (_rangeTiles.Count > 0)
     {
-      _unitRangeOverlays[i].SetActive(false);
+      DisableOverlays();
+    }
+
+    if (HoveredTile.IsOccupied())
+    {
+      _rangeTiles = BattleMovement.FindViableMoves(HoveredTile.Occupier);
+      EnableOverlays();
     }
   }
 
-  private void enableOverlays(ISet<Tile> tiles)
+  private void DisableOverlays()
   {
-    int diff = tiles.Count - _unitRangeOverlays.Count;
-    for(int i = 0; i < diff; i++)
+    foreach (Tile tile in _rangeTiles)
     {
-      _unitRangeOverlays.Add(Instantiate(rangeOverlay));
+      tile.Overlay.SetActive(false);
     }
 
-    int j = 0;
-    foreach(Tile tile in tiles)
-    {
-      _unitRangeOverlays[j].transform.position = tile.transform.position;
-      _unitRangeOverlays[j].SetActive(true);
-      j++;
-    }
+    _rangeTiles.Clear();
+  }
 
-    _activeOverlays = tiles.Count;
+  private void EnableOverlays()
+  {
+    foreach(Tile tile in _rangeTiles)
+    {
+      tile.OverlayMeshRenderer.material = rangeOverlayMaterial;
+      tile.Overlay.SetActive(true);
+    }
   }
 
   //sets selected tile to match cursor, returns true if selectedTile changed
@@ -84,17 +97,17 @@ public class Cursor : MonoBehaviour
     {
       if (collider.gameObject.CompareTag("Tile"))
       {
-        if (SelectedTile != collider.gameObject.GetComponent<Tile>())
+        if (HoveredTile != collider.gameObject.GetComponent<Tile>())
         {
-          SelectedTile = collider.gameObject.GetComponent<Tile>();
-          Overlay.transform.position = SelectedTile.transform.position;
-          _newSelectedTile = true;
+          HoveredTile = collider.gameObject.GetComponent<Tile>();
+          Overlay.transform.position = HoveredTile.Overlay.transform.position;
+          _hoverOverNewTile = true;
         }
       }
     }
   }
 
-  private void moveCursor()
+  private void MoveCursor()
   {
     float vertical = Input.GetAxis("Vertical") * Speed;
     float horizontal = Input.GetAxis("Horizontal") * Speed;

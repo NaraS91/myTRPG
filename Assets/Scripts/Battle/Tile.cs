@@ -8,16 +8,23 @@ public class Tile : MonoBehaviour
   public bool Flyable { get; set; } = true;
   public bool Current { get; set; } = false;
   public int Cost { get; } = 1;
+  public int Height { get; private set; } = 1;
   public Unit Occupier { get; private set; }
   public Tile ForwardTile { get; private set; }
   public Tile RightTile { get; private set; }
   public Tile LeftTile { get; private set; }
   public Tile BackTile { get; private set; }
+  public GameObject Overlay;
+  public MeshRenderer OverlayMeshRenderer;
 
   // Start is called before the first frame update
   void Start()
   {
     FindAdjacentTiles();
+    Overlay = Instantiate(BattleManager.DefaultOverlay, transform);
+    Overlay.transform.position = transform.position;
+    Overlay.SetActive(false);
+    OverlayMeshRenderer = Overlay.GetComponentInChildren<MeshRenderer>();
   }
 
   //some tiles may be null
