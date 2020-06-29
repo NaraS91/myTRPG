@@ -69,18 +69,24 @@ public class BattleMovement
 
       foreach (Tile tile in adjacentTiles)
       {
-        if (!distances.ContainsKey(tile))
+        if (unit.CanPass(tile))
         {
-          if (unit.CanPass(tile))
+          if (!distances.ContainsKey(tile))
           {
             tilesToProcess.Enqueue(tile);
-            distances.Add(tile, distance + 1);
-          }
-          else if (tile.IsOccupied())
+            distances.Add(tile, distance + tile.Cost);
+          } 
+          else if (distances[tile] > distance + tile.Cost)
           {
-            //TODO: units from different groups meet
+            tilesToProcess.Enqueue(tile);
+            distances[tile] = distance + tile.Cost;
           }
+        } 
+        else if (tile.IsOccupied())
+        {
+          //TODO: units from different groups meet
         }
+
       }
     }
 
@@ -90,34 +96,38 @@ public class BattleMovement
   //PRE: tile is in reach of unit
   private static void RecalculatePath(Unit unit, Tile targetTile)
   {
-    //nulls in stack represent going back in path
-    Stack<Tile> stack = new Stack<Tile>();
+    //nulls in queue represent going back in path
+    Stack<Tile> tilesToProcess = new Stack<Tile>();
     Dictionary<Tile, int> distances = new Dictionary<Tile, int>();
 
     ResetPath();
     Tile curr = unit.OccupiedTile;
     distances.Add(curr, 0);
     _path.AddLast(curr);
-    StaticUtils.PushArray(stack, curr.GetAdjacentTiles());
+    tilesToProcess.Push(curr);
 
     while(curr != targetTile)
     {
-      stack.Push(null);
+      tilesToProcess.Push(null);
 
       foreach(Tile tile in curr.GetAdjacentTiles())
       {
-        if (!distances.ContainsKey(tile))
+        if (unit.CanPass(tile))
         {
-          distances.Add(tile, _cost + tile.Cost);
-          stack.Push(tile);
-        } else if (tile.Cost + _cost < distances[tile])
-        {
-          distances[tile] = tile.Cost + _cost;
-          stack.Push(tile);
+          if (!distances.ContainsKey(tile))
+          {
+            distances.Add(tile, _cost + tile.Cost);
+            tilesToProcess.Push(tile);
+          }
+          else if (tile.Cost + _cost < distances[tile])
+          {
+            distances[tile] = tile.Cost + _cost;
+            tilesToProcess.Push(tile);
+          }
         }
       }
 
-      curr = stack.Pop();
+      curr = tilesToProcess.Pop();
       while(curr == null || _cost + curr.Cost > unit.Movement)
       {
         if (curr == null)
@@ -126,7 +136,7 @@ public class BattleMovement
           _path.RemoveLast();
         }
 
-        curr = stack.Pop();
+        curr = tilesToProcess.Pop();
       }
 
       _path.AddLast(curr);
