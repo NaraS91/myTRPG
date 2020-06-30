@@ -2978,6 +2978,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5576aff1dd9520845b9417e1050bc87b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Group: 1
   Selected: 0
 --- !u!136 &600627909
 CapsuleCollider:
@@ -5308,6 +5309,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5576aff1dd9520845b9417e1050bc87b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Group: 0
   Selected: 0
 --- !u!136 &996397957
 CapsuleCollider:

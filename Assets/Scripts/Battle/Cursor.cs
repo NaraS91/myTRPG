@@ -34,6 +34,7 @@ public class Cursor : MonoBehaviour
       {
         if (_rangeTiles.Contains(HoveredTile))
         {
+          BattleMovement.HidePath();
           BattleMovement.AddTile(HoveredTile, SelectedUnit);
           BattleMovement.ShowPath();
         }

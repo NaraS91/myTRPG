@@ -1,4 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Runtime.ExceptionServices;
 using UnityEngine;
 
 
@@ -6,6 +10,19 @@ public class BattleMovement
 {
   private static LinkedList<Tile> _path = new LinkedList<Tile>();
   private static int _cost = 0;
+
+  private class PathTile
+  {
+    public PathTile Prev { get; }
+    public Tile Curr { get; }
+    public int Cost { get; }
+    public PathTile(PathTile prev, Tile curr, int cost)
+    {
+      Prev = prev;
+      Curr = curr;
+      Cost = cost;
+    }
+  }
 
   public static void ResetPath()
   {
@@ -17,14 +34,25 @@ public class BattleMovement
   //PRE: tile is in range of unit
   public static void AddTile(Tile tile, Unit unit)
   {
-    if(unit.Movement < _cost + tile.Cost)
+    if(unit.Movement < _cost + tile.Cost || (_path.Count > 0 &&
+       !_path.Last.Value.GetAdjacentTiles().Contains(tile)))
     {
-      HidePath();
       RecalculatePath(unit, tile);
     } else
     {
-      _path.AddLast(tile);
-      _cost += tile.Cost;
+      if (_path.Contains(tile))
+      {
+        while (_path.Last.Value != tile)
+        {
+          _cost -= _path.Last.Value.Cost;
+          _path.RemoveLast();
+        }
+      }
+      else
+      {
+        _path.AddLast(tile);
+        _cost += tile.Cost;
+      }
     }
   }
 
@@ -96,51 +124,58 @@ public class BattleMovement
   //PRE: tile is in reach of unit
   private static void RecalculatePath(Unit unit, Tile targetTile)
   {
-    //nulls in queue represent going back in path
-    Stack<Tile> tilesToProcess = new Stack<Tile>();
+    //PathTile represents path in a similar way to linkedList
+    PriorityQueue<PathTile> tilesToProcess = new PriorityQueue<PathTile>();
     Dictionary<Tile, int> distances = new Dictionary<Tile, int>();
 
-    ResetPath();
-    Tile curr = unit.OccupiedTile;
-    distances.Add(curr, 0);
-    _path.AddLast(curr);
-    tilesToProcess.Push(curr);
+    PathTile curr = new PathTile(null, unit.OccupiedTile, 0);
+    distances.Add(curr.Curr, 0);
 
-    while(curr != targetTile)
+    while(curr.Curr != targetTile)
     {
-      tilesToProcess.Push(null);
-
-      foreach(Tile tile in curr.GetAdjacentTiles())
+      foreach (Tile tile in curr.Curr.GetAdjacentTiles())
       {
         if (unit.CanPass(tile))
         {
           if (!distances.ContainsKey(tile))
           {
-            distances.Add(tile, _cost + tile.Cost);
-            tilesToProcess.Push(tile);
+            distances.Add(tile, curr.Cost + tile.Cost);
+            tilesToProcess.Push(new PathTile(curr, tile, curr.Cost + tile.Cost)
+              , -(distances[tile] + AproxDistance(tile, targetTile)));
           }
-          else if (tile.Cost + _cost < distances[tile])
+          else if (curr.Cost + tile.Cost < distances[tile])
           {
-            distances[tile] = tile.Cost + _cost;
-            tilesToProcess.Push(tile);
+            distances[tile] = curr.Cost + tile.Cost;
+            tilesToProcess.Push(new PathTile(curr, tile, curr.Cost + tile.Cost)
+              , -(distances[tile] + AproxDistance(tile, targetTile)));
           }
         }
       }
 
       curr = tilesToProcess.Pop();
-      while(curr == null || _cost + curr.Cost > unit.Movement)
-      {
-        if (curr == null)
-        {
-          _cost -= _path.Last.Value.Cost;
-          _path.RemoveLast();
-        }
-
-        curr = tilesToProcess.Pop();
-      }
-
-      _path.AddLast(curr);
-      _cost += curr.Cost;
     }
+
+    RecreatePath(curr);
+  }
+
+  private static void RecreatePath(PathTile endTile)
+  {
+    ResetPath();
+    PathTile curr = endTile;
+    _cost = endTile.Cost;
+
+    while(curr.Prev != null)
+    {
+      _path.AddFirst(curr.Curr);
+      curr = curr.Prev;
+    }
+
+    _path.AddFirst(curr.Curr);
+  }
+
+  private static int AproxDistance(Tile from, Tile to)
+  {
+    return (int) Math.Abs(from.transform.position.x - to.transform.position.x)
+      + (int) Math.Abs(from.transform.position.z - to.transform.position.z);
   }
 }

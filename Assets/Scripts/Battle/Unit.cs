@@ -6,7 +6,7 @@ public class Unit : MonoBehaviour
   public int Movement { get; set; } = 4;
   public bool Flyier { get; set; } = false;
   public Tile OccupiedTile { get; set; }
-  public int Group { get; set; }
+  public int Group;
   public bool Selectable { get; set; }
   public bool Selected;
 
