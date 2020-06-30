@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class BattleManager : MonoBehaviour
 {
@@ -22,6 +23,7 @@ public class BattleManager : MonoBehaviour
   void Start()
   {
     ActiveGroup = -1;
+
    // BeginNextTurn();
   }
 
