@@ -8,7 +8,7 @@ public class Cursor : MonoBehaviour
   public GameObject Overlay;
   public Tile HoveredTile;
   public Unit SelectedUnit;
-  private bool _hoverOverNewTile;
+  private bool _hoverOverNewTile = true;
   public bool UnitIsSelected { get; private set; } = false;
 
   public Material rangeOverlayMaterial;
@@ -41,7 +41,7 @@ public class Cursor : MonoBehaviour
       }
       else
       {
-        UpdateOverlays();
+        ShowUnitsRange();
       }
 
       _hoverOverNewTile = false;
@@ -51,11 +51,24 @@ public class Cursor : MonoBehaviour
 
   public void SelectUnit()
   {
-    SelectedUnit = HoveredTile.Occupier;
-    UnitIsSelected = true;
+    if (HoveredTile.Occupier.Selectable) 
+    { 
+      SelectedUnit = HoveredTile.Occupier;
+      UnitIsSelected = true;
+    }
   }
 
-  private void UpdateOverlays()
+  public bool IsInRangeOfSelectedUnit()
+  {
+    return _rangeTiles.Contains(HoveredTile);
+  }
+  public void DeselectUnit()
+  {
+    UnitIsSelected = false;
+    SelectedUnit = null;
+  }
+
+  private void ShowUnitsRange()
   {
     if (_rangeTiles.Count > 0)
     {
@@ -69,7 +82,7 @@ public class Cursor : MonoBehaviour
     }
   }
 
-  private void DisableOverlays()
+  public void DisableOverlays()
   {
     foreach (Tile tile in _rangeTiles)
     {
@@ -88,12 +101,14 @@ public class Cursor : MonoBehaviour
     }
   }
 
-  //sets selected tile to match cursor, returns true if selectedTile changed
+  //sets selected tile to match cursor, and updates _hoverOverNewTile
   void UpdateSelectedTile()
   {
     Collider[] colliders = Physics.OverlapSphere(new Vector3
       (transform.position.x, 0.0f, transform.position.z),
       0.0f, BattleManager.TILES_LAYER);
+    _hoverOverNewTile = false;
+
     foreach (Collider collider in colliders)
     {
       if (collider.gameObject.CompareTag("Tile"))

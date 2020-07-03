@@ -7,8 +7,13 @@ public class Unit : MonoBehaviour
   public bool Flyier { get; set; } = false;
   public Tile OccupiedTile { get; set; }
   public int Group;
-  public bool Selectable { get; set; }
+  public bool Selectable { get; set; } = false;
   public bool Selected;
+
+  private void Awake()
+  {
+    tag = BattleManager.UNIT_TAG;
+  }
 
   // Start is called before the first frame update
   void Start()
@@ -52,5 +57,14 @@ public class Unit : MonoBehaviour
       && (tile.Walkable || (tile.Flyable && Flyier));
   }
 
+
+  //Move unit to selected Tile
+  public void Move(Tile tile)
+  {
+    Vector3 newUnitPosition = tile.transform.position;
+    newUnitPosition.y = transform.position.y;
+    transform.position = newUnitPosition;
+    UpdateTile();
+  }
 
 }

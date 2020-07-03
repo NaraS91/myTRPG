@@ -2961,7 +2961,7 @@ GameObject:
   - component: {fileID: 600627908}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Enemy
+  m_TagString: Unit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5292,7 +5292,7 @@ GameObject:
   - component: {fileID: 996397956}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Player
+  m_TagString: Unit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7667,7 +7667,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf861a767bcdfa94b942d4f319c2d39a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TurnQueue: []
   ActiveGroup: 0
   CursorObject: {fileID: 115756002}
 --- !u!4 &1611587764
