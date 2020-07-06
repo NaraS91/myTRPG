@@ -34,25 +34,27 @@ public class BattleMovement
   //PRE: tile is in range of unit
   public static void AddTile(Tile tile, Unit unit)
   {
-    if(unit.Movement < _cost + tile.Cost || (_path.Count > 0 &&
-       !_path.Last.Value.GetAdjacentTiles().Contains(tile)))
+    if(tile == unit.OccupiedTile)
+    {
+      ResetPath();
+    }
+    else if (_path.Contains(tile))
+    {
+      while (_path.Count != 0 && _path.Last.Value != tile)
+      {
+        _cost -= _path.Last.Value.Cost;
+        _path.RemoveLast();
+      }
+    }
+    else if (unit.Movement < _cost + tile.Cost || (_path.Count > 0 &&
+             !_path.Last.Value.GetAdjacentTiles().Contains(tile)))
     {
       RecalculatePath(unit, tile);
-    } else
-    {
-      if (_path.Contains(tile))
-      {
-        while (_path.Last.Value != tile)
-        {
-          _cost -= _path.Last.Value.Cost;
-          _path.RemoveLast();
-        }
-      }
-      else
-      {
-        _path.AddLast(tile);
-        _cost += tile.Cost;
-      }
+    } 
+    else
+    { 
+      _path.AddLast(tile);
+      _cost += tile.Cost;
     }
   }
 
@@ -169,8 +171,6 @@ public class BattleMovement
       _path.AddFirst(curr.Curr);
       curr = curr.Prev;
     }
-
-    _path.AddFirst(curr.Curr);
   }
 
   private static int AproxDistance(Tile from, Tile to)
