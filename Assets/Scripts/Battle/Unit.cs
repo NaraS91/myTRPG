@@ -38,9 +38,11 @@ public class Unit : MonoBehaviour
     {
       if(collider.gameObject != null && collider.gameObject.CompareTag("Tile"))
       {
-        if (collider.gameObject.GetComponent<Tile>().SetOccupier(this))
+        Tile overlapingTile = collider.gameObject.GetComponent<Tile>();
+        if (overlapingTile.SetOccupier(this))
         {
-          if(OccupiedTile != null) FreeTile();
+          if(OccupiedTile != null && OccupiedTile != overlapingTile) 
+            FreeTile();
           OccupiedTile = collider.gameObject.GetComponent<Tile>();
           return true;
         }
