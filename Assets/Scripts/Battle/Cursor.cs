@@ -8,15 +8,16 @@ public class Cursor : MonoBehaviour
   public GameObject Overlay;
   public Tile HoveredTile;
   public Unit SelectedUnit;
+  private BattleManager _battleManager;
   private bool _hoverOverNewTile = true;
   public bool UnitIsSelected { get; private set; } = false;
 
-  public Material rangeOverlayMaterial;
-  private ISet<Tile> _rangeTiles = new HashSet<Tile>();
 
   // Start is called before the first frame update
   void Start()
   {
+    _battleManager = GameObject.FindGameObjectWithTag("BattleManager")
+      .GetComponent<BattleManager>();
   }
 
   private void FixedUpdate()
@@ -32,7 +33,7 @@ public class Cursor : MonoBehaviour
     {
       if (UnitIsSelected)
       {
-        if (_rangeTiles.Contains(HoveredTile))
+        if (_battleManager.OverlaysManager.UnitTilesContain(HoveredTile))
         {
           BattleMovement.HidePath();
           BattleMovement.AddTile(HoveredTile, SelectedUnit);
@@ -41,7 +42,7 @@ public class Cursor : MonoBehaviour
       }
       else
       {
-        ShowUnitsRange();
+        _battleManager.OverlaysManager.OnNewTile(HoveredTile);
       }
 
       _hoverOverNewTile = false;
@@ -60,45 +61,12 @@ public class Cursor : MonoBehaviour
 
   public bool IsInRangeOfSelectedUnit()
   {
-    return _rangeTiles.Contains(HoveredTile);
+    return _battleManager.OverlaysManager.UnitTilesContain(HoveredTile);
   }
   public void DeselectUnit()
   {
     UnitIsSelected = false;
     SelectedUnit = null;
-  }
-
-  private void ShowUnitsRange()
-  {
-    if (_rangeTiles.Count > 0)
-    {
-      DisableOverlays();
-    }
-
-    if (HoveredTile.IsOccupied())
-    {
-      _rangeTiles = BattleMovement.FindViableMoves(HoveredTile.Occupier);
-      EnableOverlays();
-    }
-  }
-
-  public void DisableOverlays()
-  {
-    foreach (Tile tile in _rangeTiles)
-    {
-      tile.Overlay.SetActive(false);
-    }
-
-    _rangeTiles.Clear();
-  }
-
-  private void EnableOverlays()
-  {
-    foreach(Tile tile in _rangeTiles)
-    {
-      tile.OverlayMeshRenderer.material = rangeOverlayMaterial;
-      tile.Overlay.SetActive(true);
-    }
   }
 
   //sets selected tile to match cursor, and updates _hoverOverNewTile

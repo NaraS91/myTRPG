@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Runtime.ExceptionServices;
 using UnityEngine;
 
 
@@ -34,6 +32,11 @@ public class BattleMovement
   //PRE: tile is in range of unit
   public static void AddTile(Tile tile, Unit unit)
   {
+    if (!unit.CanPass(tile))
+    {
+      return;
+    }
+
     if(tile == unit.OccupiedTile)
     {
       ResetPath();
@@ -47,7 +50,9 @@ public class BattleMovement
       }
     }
     else if (unit.Movement < _cost + tile.Cost || (_path.Count > 0 &&
-             !_path.Last.Value.GetAdjacentTiles().Contains(tile)))
+             !_path.Last.Value.GetAdjacentTiles().Contains(tile)) ||
+             (_path.Count == 0 &&
+             !tile.GetAdjacentTiles().Contains(unit.OccupiedTile)))
     {
       RecalculatePath(unit, tile);
     } 

@@ -460,8 +460,6 @@ MonoBehaviour:
   Overlay: {fileID: 1604152489}
   HoveredTile: {fileID: 0}
   SelectedUnit: {fileID: 0}
-  rangeOverlayMaterial: {fileID: 2100000, guid: e924048d4af796446851e9c97ec5837e,
-    type: 2}
 --- !u!1 &149179872
 GameObject:
   m_ObjectHideFlags: 0
@@ -7649,8 +7647,8 @@ GameObject:
   - component: {fileID: 1611587764}
   - component: {fileID: 1611587763}
   m_Layer: 0
-  m_Name: GameManager
-  m_TagString: Untagged
+  m_Name: BattleManager
+  m_TagString: BattleManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

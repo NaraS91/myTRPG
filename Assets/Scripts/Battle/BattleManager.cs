@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using System;
-using System.IO;
+
 
 public class BattleManager : MonoBehaviour
 {
@@ -15,10 +14,13 @@ public class BattleManager : MonoBehaviour
   private int _numberOfGroups = 0;
   private int _numberOfActiveUnits;
   private Cursor _cursor;
+  public OverlaysManager OverlaysManager { get; } = new OverlaysManager();
   public bool MenuIsUp { get; private set; } = false;
 
   private void Awake()
   {
+    OverlaysManager.LoadMaterials();
+
     _cursor = CursorObject.GetComponent<Cursor>();
     DefaultOverlay = _cursor.Overlay;
 
@@ -78,7 +80,8 @@ public class BattleManager : MonoBehaviour
             _cursor.SelectedUnit.Selectable = false;
             _numberOfActiveUnits--;
             BattleMovement.HidePath();
-            _cursor.DisableOverlays();
+            BattleMovement.ResetPath();
+            OverlaysManager.DisableAllOverlays();
             _cursor.DeselectUnit();
           }
         }
