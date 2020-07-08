@@ -29,7 +29,8 @@ public class BattleMovement
   }
 
 
-  //PRE: tile is in range of unit
+  //adds tile to the _path if its in range of unit
+  //or recalculates the _path to include the tile if its in range of unit
   public static void AddTile(Tile tile, Unit unit)
   {
     if (!unit.CanPass(tile))
