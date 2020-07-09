@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using UnityEditor.UIElements;
 using UnityEngine;
 
 
@@ -12,8 +10,10 @@ public class BattleManager : MonoBehaviour
 
   public static GameObject DefaultOverlay;
   public GameObject CursorObject;
-  public Tile[,] MapTiles { get; private set; }
+  public static Tile[,] MapTiles { get; private set; }
   [SerializeField] public int TilesDistance { get; private set; }
+  public static int XOffset { get; private set; }
+  public static int ZOffset { get; private set; }
 
   public Cursor Cursor { get; private set; }
   public OverlaysManager OverlaysManager { get; } = new OverlaysManager();
@@ -65,6 +65,9 @@ public class BattleManager : MonoBehaviour
     }
 
     MapTiles = new Tile[maxZ - minZ + 1, maxX - minX + 1];
+
+    XOffset = -minX;
+    ZOffset = -minZ;
 
     foreach (GameObject tileObject in tileObjects)
     {

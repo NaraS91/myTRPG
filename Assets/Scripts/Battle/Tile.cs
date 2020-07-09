@@ -58,31 +58,30 @@ public class Tile : MonoBehaviour
 
   private void FindAdjacentTiles()
   {
-    Collider[] adjacentColliders = Physics.OverlapSphere(transform.position,
-      transform.localScale.x * 1.1f, BattleManager.TILES_LAYER);
-
-    foreach (Collider collider in adjacentColliders)
+    int x = (int) transform.position.x;
+    int z = (int) transform.position.z;
+    if (x + BattleManager.XOffset + 1 < BattleManager.MapTiles.GetLength(1))
     {
-      if (collider.gameObject != null)
-      {
-        GameObject tile = collider.gameObject;
-        float deltaX = tile.transform.position.x - transform.position.x;
-        float deltaZ = tile.transform.position.z - transform.position.z;
-        switch (deltaX * 3 + deltaZ)
-        {
-          case 3:
-            RightTile = tile.GetComponent<Tile>(); break;
-          case -3:
-            LeftTile = tile.GetComponent<Tile>(); break;
-          case 1:
-            ForwardTile = tile.GetComponent<Tile>(); break;
-          case -1:
-            BackTile = tile.GetComponent<Tile>(); break;
-          default:
-            break;
-        }
+      RightTile = BattleManager.MapTiles[z + BattleManager.ZOffset,
+                                         x + BattleManager.XOffset + 1];
+    }
 
-      }
+    if (x + BattleManager.XOffset - 1 >= 0)
+    {
+      LeftTile = BattleManager.MapTiles[z + BattleManager.ZOffset,
+                                        x + BattleManager.XOffset - 1];
+    }
+
+    if (z + BattleManager.ZOffset + 1 < BattleManager.MapTiles.GetLength(0))
+    {
+      ForwardTile = BattleManager.MapTiles[z + BattleManager.ZOffset + 1,
+                                           x + BattleManager.XOffset];
+    }
+
+    if (z + BattleManager.ZOffset - 1 >= 0)
+    {
+      BackTile = BattleManager.MapTiles[z + BattleManager.ZOffset - 1,
+                                         x + BattleManager.XOffset];
     }
   }
 }
