@@ -10,6 +10,8 @@ public class BattleManager : MonoBehaviour
 
   public static GameObject DefaultOverlay;
   public GameObject CursorObject;
+  //MapTiles[i + ZOffset, j + XOffset] = tile at (int) position.z = i,
+  //(int) position.x = j
   public static Tile[,] MapTiles { get; private set; }
   [SerializeField] public int TilesDistance { get; private set; }
   public static int XOffset { get; private set; }

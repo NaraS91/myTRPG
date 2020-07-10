@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Tile : MonoBehaviour
@@ -55,6 +57,42 @@ public class Tile : MonoBehaviour
   {
     return Occupier != null;
   }
+
+
+  //returns tiles distant by exactly 'distance'
+  public ISet<Tile> FindTiles(int distance)
+  {
+    ISet<Tile> result = new HashSet<Tile>();
+    int x = (int) transform.position.x;
+    int z = (int) transform.position.z;
+
+    for(int i = -distance; i <= distance; i++)
+    {
+      int tileXIndex = i + x + BattleManager.XOffset;
+      if(tileXIndex >= 0 &&
+        tileXIndex < BattleManager.MapTiles.GetLength(1))
+      {
+        int tileZIndex
+          = z + BattleManager.ZOffset + distance - Math.Abs(i);
+        if(tileZIndex >= 0 &&
+          tileZIndex < BattleManager.MapTiles.GetLength(0))
+        {
+          result.Add(BattleManager.MapTiles[tileZIndex, tileXIndex]);
+        }
+
+        tileZIndex 
+          = z + BattleManager.ZOffset - distance + Math.Abs(i);
+        if (tileZIndex >= 0 &&
+          tileZIndex < BattleManager.MapTiles.GetLength(0))
+        {
+          result.Add(BattleManager.MapTiles[tileZIndex, tileXIndex]);
+        }
+      }
+    }
+
+    return result;
+  }
+
 
   private void FindAdjacentTiles()
   {
