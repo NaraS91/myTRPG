@@ -20,11 +20,13 @@ public class BattleManager : MonoBehaviour
   public Cursor Cursor { get; private set; }
   public OverlaysManager OverlaysManager { get; } = new OverlaysManager();
   public BattleTurnManager BattleTurnManager { get; private set; }
+  public BattleMovement BattleMovement { get; private set; }
 
 
   private void Awake()
   {
-    OverlaysManager.LoadMaterials();
+    BattleMovement = new BattleMovement(OverlaysManager);
+    OverlaysManager.SetUp(BattleMovement);
     BattleTurnManager = GetComponent<BattleTurnManager>();
     Cursor = CursorObject.GetComponent<Cursor>();
     DefaultOverlay = Cursor.Overlay;

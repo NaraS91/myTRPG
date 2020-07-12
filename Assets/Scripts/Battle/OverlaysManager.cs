@@ -3,9 +3,7 @@ using UnityEngine;
 
 public class OverlaysManager
 {
-  private ISet<Unit> _enemyUnits = new HashSet<Unit>();
-  private ISet<Tile> _enemyTiles = new HashSet<Tile>();
-  private ISet<Tile> _unitTiles = new HashSet<Tile>();
+  private BattleMovement _battleMovement;
 
   private static Material _rangeOverlayMaterial;
   private static Material _enemiesOverlayMaterial;
@@ -13,7 +11,8 @@ public class OverlaysManager
 
   private static bool _overlaysSetUp = false;
 
-  public void LoadMaterials()
+  //loads materials and assigns battleMovement
+  public void SetUp(BattleMovement battleMovement)
   {
     if (!_overlaysSetUp)
     {
@@ -25,35 +24,23 @@ public class OverlaysManager
       _attackOverlayMaterial
        = Resources.Load("Materials/AttackOverlayMaterial") as Material;
     }
+
+    _battleMovement = battleMovement;
   }
 
-  public void OnNewTile(Tile tile)
+  public void DisableUnitOverlays()
   {
-    if (_unitTiles.Count > 0)
-    {
-      DisableOverlays(_unitTiles);
-    }
-
-    if (tile.IsOccupied())
-    {
-      _unitTiles = BattleMovement.FindViableMoves(tile.Occupier);
-      EnableOverlays(_unitTiles, _rangeOverlayMaterial);
-    }
+    DisableOverlays(_battleMovement.UnitTiles);
   }
 
   public void DisableAllOverlays()
   {
-    DisableOverlays(_enemyTiles);
-    DisableOverlays(_unitTiles);
-    _enemyUnits.Clear();
+    DisableOverlays(_battleMovement.EnemyTiles);
+    DisableOverlays(_battleMovement.UnitTiles);
+    _battleMovement.EnemyUnits.Clear();
   }
 
-  public bool UnitTilesContain(Tile tile)
-  {
-    return _unitTiles.Contains(tile);
-  }
-
-  private void DisableOverlays(ISet<Tile> tiles)
+  public void DisableOverlays(ISet<Tile> tiles)
   {
     foreach (Tile tile in tiles)
     {
@@ -63,11 +50,11 @@ public class OverlaysManager
     tiles.Clear();
   }
 
-  private void EnableOverlays(ISet<Tile> tiles, Material material)
+  public void EnableUnitOverlays()
   {
-    foreach (Tile tile in tiles)
+    foreach (Tile tile in _battleMovement.UnitTiles)
     {
-      tile.OverlayMeshRenderer.material = material;
+      tile.OverlayMeshRenderer.material = _rangeOverlayMaterial;
       tile.Overlay.SetActive(true);
     }
   }

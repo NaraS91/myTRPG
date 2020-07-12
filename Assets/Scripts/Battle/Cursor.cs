@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Cursor : MonoBehaviour
 {
@@ -33,16 +31,16 @@ public class Cursor : MonoBehaviour
     {
       if (UnitIsSelected)
       {
-        if (_battleManager.OverlaysManager.UnitTilesContain(HoveredTile))
+        if (_battleManager.BattleMovement.UnitTiles.Contains(HoveredTile))
         {
-          BattleMovement.HidePath();
-          BattleMovement.AddTile(HoveredTile, SelectedUnit);
-          BattleMovement.ShowPath();
+          BattleMovementUtils.HidePath();
+          BattleMovementUtils.AddTile(HoveredTile, SelectedUnit);
+          BattleMovementUtils.ShowPath();
         }
       }
       else
       {
-        _battleManager.OverlaysManager.OnNewTile(HoveredTile);
+        _battleManager.BattleMovement.OnNewTile(HoveredTile);
       }
 
       _hoverOverNewTile = false;
@@ -61,8 +59,9 @@ public class Cursor : MonoBehaviour
 
   public bool IsInRangeOfSelectedUnit()
   {
-    return _battleManager.OverlaysManager.UnitTilesContain(HoveredTile);
+    return _battleManager.BattleMovement.UnitTiles.Contains(HoveredTile);
   }
+
   public void DeselectUnit()
   {
     UnitIsSelected = false;

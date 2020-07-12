@@ -3,13 +3,13 @@
 [RequireComponent(typeof(BattleManager))]
 public class BattleInput : MonoBehaviour
 {
-  private BattleManager _battleManager;
+  [SerializeField] private BattleManager _battleManager;
   private Cursor _cursor;
   public bool MenuIsUp { get; private set; } = false;
 
   private void Awake()
   {
-    _battleManager = GetComponent<BattleManager>();
+
   }
 
   // Start is called before the first frame update
@@ -31,15 +31,15 @@ public class BattleInput : MonoBehaviour
     {
       if (!MenuIsUp)
       {
-        if (_battleManager.Cursor.UnitIsSelected)
+        if (_cursor.UnitIsSelected)
         {
           if (_cursor.IsInRangeOfSelectedUnit())
           {
             _cursor.SelectedUnit.Move(_cursor.HoveredTile);
             _battleManager.BattleTurnManager.DeactivateUnit(_cursor.SelectedUnit);
-            BattleMovement.HidePath();
-            BattleMovement.ResetPath();
-            _battleManager.OverlaysManager.DisableAllOverlays();
+            BattleMovementUtils.HidePath();
+            BattleMovementUtils.ResetPath();
+            _battleManager.OverlaysManager.DisableUnitOverlays();
             _cursor.DeselectUnit();
           }
         }

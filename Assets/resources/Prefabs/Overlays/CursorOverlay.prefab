@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3486256404851536928}
   m_Layer: 0
-  m_Name: Overlay
+  m_Name: CursorOverlay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
