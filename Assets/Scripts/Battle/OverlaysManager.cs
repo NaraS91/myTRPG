@@ -31,6 +31,7 @@ public class OverlaysManager
   public void DisableUnitOverlays()
   {
     DisableOverlays(_battleMovement.UnitTiles);
+    DisableOverlays(_battleMovement.AttackedTiles);
   }
 
   public void DisableAllOverlays()
@@ -40,7 +41,7 @@ public class OverlaysManager
     _battleMovement.EnemyUnits.Clear();
   }
 
-  public void DisableOverlays(ISet<Tile> tiles)
+  private void DisableOverlays(ISet<Tile> tiles)
   {
     foreach (Tile tile in tiles)
     {
@@ -52,10 +53,21 @@ public class OverlaysManager
 
   public void EnableUnitOverlays()
   {
+
     foreach (Tile tile in _battleMovement.UnitTiles)
     {
       tile.OverlayMeshRenderer.material = _rangeOverlayMaterial;
       tile.Overlay.SetActive(true);
+    }
+
+    foreach (Tile tile in _battleMovement.AttackedTiles)
+    {
+      if(!tile.Overlay.activeSelf ||
+        tile.OverlayMeshRenderer.material.Equals(_rangeOverlayMaterial))
+      {
+        tile.OverlayMeshRenderer.material = _attackOverlayMaterial;
+        tile.Overlay.SetActive(true);
+      }
     }
   }
 }

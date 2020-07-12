@@ -18,13 +18,13 @@ public class BattleMovement
   {
     if (UnitTiles.Count > 0)
     {
-      _overlaysManager.DisableOverlays(UnitTiles);
+      _overlaysManager.DisableUnitOverlays();
     }
 
     if (tile.IsOccupied())
     {
       UnitTiles = BattleMovementUtils.FindViableMoves(tile.Occupier);
-      AttackedTiles = BattleMovementUtils.FindAttackedTiles(UnitTiles, 1, 1);
+      AttackedTiles = BattleMovementUtils.FindAttackedTiles(UnitTiles, 2, 2);
       _overlaysManager.EnableUnitOverlays();
       //TODO:....
       // EnableOverlays(_attackedTiles.Except(_unitTiles),
