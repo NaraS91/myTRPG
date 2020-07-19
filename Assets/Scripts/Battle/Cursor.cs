@@ -74,7 +74,6 @@ public class Cursor : MonoBehaviour
     Collider[] colliders = Physics.OverlapSphere(new Vector3
       (transform.position.x, 0.0f, transform.position.z),
       0.0f, BattleManager.TILES_LAYER);
-    _hoverOverNewTile = false;
 
     foreach (Collider collider in colliders)
     {
