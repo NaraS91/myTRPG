@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class MovementInput : MonoBehaviour
 {
@@ -22,12 +20,9 @@ public class MovementInput : MonoBehaviour
       {
         if (_cursor.IsInRangeOfSelectedUnit())
         {
-          _cursor.SelectedUnit.Move(_cursor.HoveredTile);
-          _battleManager.BattleTurnManager.DeactivateUnit(_cursor.SelectedUnit);
-          BattleMovementUtils.HidePath();
-          BattleMovementUtils.ResetPath();
-          _battleManager.OverlaysManager.DisableUnitOverlays();
-          _cursor.DeselectUnit();
+         // uncomment to see buttons, they still dont work tho
+         // UIManager.ShowButtons(2, new string[]{"Move", "Attack"});
+         MoveUnit();
         }
       }
       else if (_cursor.HoveredTile.IsOccupied())
@@ -44,4 +39,15 @@ public class MovementInput : MonoBehaviour
       }
     }
   }
+
+  private void MoveUnit()
+  {
+    _cursor.SelectedUnit.Move(_cursor.HoveredTile);
+    _battleManager.BattleTurnManager.DeactivateUnit(_cursor.SelectedUnit);
+    BattleMovementUtils.HidePath();
+    BattleMovementUtils.ResetPath();
+    _battleManager.OverlaysManager.DisableUnitOverlays();
+    _cursor.DeselectUnit();
+  }
 }
+
