@@ -2,10 +2,19 @@
 
 public class Unit : MonoBehaviour
 {
-  public int Health { get; set; } = 50;
-  public int Movement { get; set; } = 4;
-  public bool Flyier { get; set; } = false;
-  public Tile OccupiedTile { get; set; }
+  public int Level;
+  public int Health;
+  public int Movement;
+  public int Attack;
+  public int Magic;
+  public int Defense;
+  public int Resist;
+  public int Speed;
+  public int Dexterity;
+  public Weapon EquippedWeapon { get; private set; }
+
+  public bool Flyier { get; private set; } = false;
+  public Tile OccupiedTile { get; private set; }
   public int Group;
   public bool Selectable { get; set; } = false;
   public bool Selected;
@@ -13,6 +22,7 @@ public class Unit : MonoBehaviour
   private void Awake()
   {
     tag = BattleManager.UNIT_TAG;
+    EquippedWeapon = new Weapon(5, EDamageType.Physical);
   }
 
   // Start is called before the first frame update
