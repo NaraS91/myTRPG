@@ -4,7 +4,9 @@ using UnityEngine.UI;
 public static class UIManager
 {
   private static Button[] buttons;
-  private static GameObject CanvasGO;
+  private static GameObject CanvasGO; 
+  public static int DisplayedButtons { get; private set; } = 0;
+  private static int _activeButton = 0;
   private const int NUMBER_OF_BUTTONS = 10;
   private const int X_RESOLUTION = 1920;
   private const int Y_RESOLUTION = 1080;
@@ -32,6 +34,7 @@ public static class UIManager
 
   public static void ShowButtons(int number, string[] names)
   {
+    DisplayedButtons = number;
     int yPos = Y_POS_BUTTON + (GAP_BETWEEN_BUTTONS + BUTTON_RESOLUTION[1])
                * (number - 1) / 2;
 
@@ -44,7 +47,41 @@ public static class UIManager
       yPos -= GAP_BETWEEN_BUTTONS + BUTTON_RESOLUTION[1];
     }
 
+    _activeButton = 0;
     buttons[0].HoveredOver();
+  }
+
+  public static void HideButtons()
+  {
+    for(int i = 0; i < DisplayedButtons; i++)
+    {
+      buttons[i].gameObject.SetActive(false);
+    }
+
+    DisplayedButtons = 0;
+  }
+
+  public static void NextButton()
+  {
+    if(_activeButton < DisplayedButtons - 1)
+    {
+      buttons[_activeButton++].NotHoveredOver();
+      buttons[_activeButton].HoveredOver();
+    }
+  }
+
+  public static void PreviousButton()
+  {
+    if (_activeButton > 0)
+    {
+      buttons[_activeButton--].NotHoveredOver();
+      buttons[_activeButton].HoveredOver();
+    }
+  }
+
+  public static EButtonType ActiveButtonType()
+  {
+    return buttons[_activeButton].Type;
   }
 
   private static void InitializeCanvas()

@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Linq;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class Button : MonoBehaviour
@@ -8,6 +10,7 @@ public class Button : MonoBehaviour
   [SerializeField] private GameObject _hoveredBackgroundImage;
   [SerializeField] private float[] _textRGB;
   [SerializeField] private float[] _hoveredTextRGB;
+  public EButtonType Type { get; private set; }
 
   private void Awake()
   {
@@ -42,6 +45,16 @@ public class Button : MonoBehaviour
 
   public void SetText(string text)
   {
+    if (Enum.TryParse<EButtonType>(text, out EButtonType parsedType))
+    {
+      Type = parsedType;
+    } else
+    {
+      Debug.LogError("Parsing did not succeed");
+      Type = EButtonType.Move;
+    }
+
+
     _text.text = text;
   }
 

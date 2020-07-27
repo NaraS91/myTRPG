@@ -11,6 +11,10 @@ public class InputManager : MonoBehaviour
   public InputState InputState { get; set; } = InputState.Movement;
   public bool SelectDown { get; private set; }
   public bool CancelDown { get; private set; }
+  public bool DownDirection { get; private set; }
+  public bool UpDirection { get; private set; }
+  private float _previousVertical;
+  private const float _controllerSensitivity = 0.1f;
 
   private void Awake()
   {
@@ -38,7 +42,7 @@ public class InputManager : MonoBehaviour
       case InputState.Movement:
         _movementInput.HandleInput();
         break;
-      case InputState.Menu:
+      case InputState.ActionMenu:
         _menuInput.HandleInput();
         break;
       default:
@@ -51,5 +55,25 @@ public class InputManager : MonoBehaviour
   {
     SelectDown = Input.GetButtonDown("Select");
     CancelDown = Input.GetButtonDown("Cancel");
+    float verticalAxis = Input.GetAxis("Vertical");
+
+    DownDirection = false;
+    UpDirection = false;
+
+    if (verticalAxis > _controllerSensitivity)
+    {
+      if (_previousVertical <= _controllerSensitivity)
+      {
+        UpDirection = true;
+      }
+    } else if (verticalAxis < -_controllerSensitivity)
+    {
+      if (_previousVertical >= -_controllerSensitivity)
+      {
+        DownDirection = true;
+      }
+    }
+
+    _previousVertical = verticalAxis;
   }
 }
