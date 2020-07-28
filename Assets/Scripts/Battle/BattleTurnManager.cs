@@ -7,6 +7,7 @@ public class BattleTurnManager : MonoBehaviour
 
   public Dictionary<int, ISet<Unit>> Groups;
   public int ActiveGroup { get; private set; }
+  private HashSet<Tuple<int, int>> _alliances = new HashSet<Tuple<int, int>>();
   private int _numberOfGroups = 0;
   private int _numberOfActiveUnits;
   private BattleManager _battleManager;
@@ -58,6 +59,13 @@ public class BattleTurnManager : MonoBehaviour
       throw new InvalidOperationException(@"unit is not in the active group
                                           or is not selectable");
     }
+  }
+
+  public bool InAlliance(int group1, int group2)
+  {
+    Tuple<int, int> pair1 = new Tuple<int, int>(group1, group2);
+    Tuple<int, int> pair2 = new Tuple<int, int>(group2, group1);
+    return _alliances.Contains(pair1) || _alliances.Contains(pair2);
   }
 
   private void BeginNextTurn()

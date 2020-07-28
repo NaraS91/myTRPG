@@ -25,9 +25,9 @@ public class BattleManager : MonoBehaviour
 
   private void Awake()
   {
-    BattleMovement = new BattleMovement(OverlaysManager);
-    OverlaysManager.SetUp(BattleMovement);
     BattleTurnManager = GetComponent<BattleTurnManager>();
+    BattleMovement = new BattleMovement(OverlaysManager, BattleTurnManager);
+    OverlaysManager.SetUp(BattleMovement);
     Cursor = CursorObject.GetComponent<Cursor>();
     DefaultOverlay = Cursor.Overlay;
     FindAllTiles();

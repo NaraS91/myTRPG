@@ -1,11 +1,14 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Animations;
 
 [RequireComponent(typeof(BattleManager))]
 public class InputManager : MonoBehaviour
 {
   [SerializeField] private BattleManager _battleManager;
   [SerializeField] private MovementInput _movementInput;
-  [SerializeField] private MenuInput _menuInput;
+  [SerializeField] private ActionMenuInput _menuInput;
+  [SerializeField] private UnitToAttackInput _unitToAttackInput;
   private Cursor _cursor;
   public bool MenuIsUp { get; private set; } = false;
   public InputState InputState { get; set; } = InputState.Movement;
@@ -13,8 +16,12 @@ public class InputManager : MonoBehaviour
   public bool CancelDown { get; private set; }
   public bool DownDirection { get; private set; }
   public bool UpDirection { get; private set; }
+  public bool RightDirection { get; private set; }
+  public bool LeftDirection { get; private set; }
   private float _previousVertical;
+  private float _previousHorizontal;
   private const float _controllerSensitivity = 0.1f;
+  private Stack<InputState> _previousStates = new Stack<InputState>();
 
   private void Awake()
   {
@@ -45,16 +52,40 @@ public class InputManager : MonoBehaviour
       case InputState.ActionMenu:
         _menuInput.HandleInput();
         break;
+      case InputState.SelectingUnitToAttack:
+        _unitToAttackInput.HandleInput();
+        break;
       default:
         Debug.LogError("Invalid InputState value");
         break;
     }
   }
 
+  public void GoToPreviousState()
+  {
+    InputState = _previousStates.Pop();
+  }
+
+  public void AddStateToHistory(InputState inputState)
+  {
+    _previousStates.Push(inputState);
+  }
+
+  public void ResetHistory()
+  {
+    _previousStates.Clear();
+  }
+
   private void ReadInput()
   {
     SelectDown = Input.GetButtonDown("Select");
     CancelDown = Input.GetButtonDown("Cancel");
+    ReadHorizontalAxis();
+    ReadVerticalAxis();
+  }
+
+  private void ReadVerticalAxis()
+  {
     float verticalAxis = Input.GetAxis("Vertical");
 
     DownDirection = false;
@@ -66,7 +97,8 @@ public class InputManager : MonoBehaviour
       {
         UpDirection = true;
       }
-    } else if (verticalAxis < -_controllerSensitivity)
+    }
+    else if (verticalAxis < -_controllerSensitivity)
     {
       if (_previousVertical >= -_controllerSensitivity)
       {
@@ -75,5 +107,30 @@ public class InputManager : MonoBehaviour
     }
 
     _previousVertical = verticalAxis;
+  }
+
+  private void ReadHorizontalAxis()
+  {
+    float horizontalAxis = Input.GetAxis("Horizontal");
+
+    LeftDirection = false;
+    RightDirection = false;
+
+    if (horizontalAxis > _controllerSensitivity)
+    {
+      if (_previousHorizontal <= _controllerSensitivity)
+      {
+        RightDirection = true;
+      }
+    }
+    else if (horizontalAxis < -_controllerSensitivity)
+    {
+      if (_previousHorizontal >= -_controllerSensitivity)
+      {
+        LeftDirection = true;
+      }
+    }
+
+    _previousHorizontal = horizontalAxis;
   }
 }

@@ -6,6 +6,7 @@ public static class UIManager
   private static Button[] buttons;
   private static GameObject CanvasGO; 
   public static int DisplayedButtons { get; private set; } = 0;
+  private static int _buttonsUsedLastTime = 0;
   private static int _activeButton = 0;
   private const int NUMBER_OF_BUTTONS = 10;
   private const int X_RESOLUTION = 1920;
@@ -32,6 +33,7 @@ public static class UIManager
     }
   }
 
+
   public static void ShowButtons(int number, string[] names)
   {
     DisplayedButtons = number;
@@ -51,6 +53,17 @@ public static class UIManager
     buttons[0].HoveredOver();
   }
 
+
+  public static void ShowPreviousButtons()
+  {
+    DisplayedButtons = _buttonsUsedLastTime;
+    for(int i = 0; i < DisplayedButtons; i++)
+    {
+      buttons[i].gameObject.SetActive(true);
+    }
+  }
+
+
   public static void HideButtons()
   {
     for(int i = 0; i < DisplayedButtons; i++)
@@ -58,8 +71,10 @@ public static class UIManager
       buttons[i].gameObject.SetActive(false);
     }
 
+    _buttonsUsedLastTime = DisplayedButtons;
     DisplayedButtons = 0;
   }
+
 
   public static void NextButton()
   {
@@ -70,6 +85,7 @@ public static class UIManager
     }
   }
 
+
   public static void PreviousButton()
   {
     if (_activeButton > 0)
@@ -79,10 +95,12 @@ public static class UIManager
     }
   }
 
+
   public static EButtonType ActiveButtonType()
   {
     return buttons[_activeButton].Type;
   }
+
 
   private static void InitializeCanvas()
   {

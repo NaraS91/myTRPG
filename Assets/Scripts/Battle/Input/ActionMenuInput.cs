@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 
-public class MenuInput : MonoBehaviour
+public class ActionMenuInput : MonoBehaviour
 {
   [SerializeField] private BattleManager _battleManager;
   [SerializeField] private InputManager _inputManager;
+  [SerializeField] private UnitToAttackInput _unitToAttackInput;
+  public Tile PreviousTile {get; set;}
   private Cursor _cursor;
 
   private void Start()
@@ -18,21 +20,25 @@ public class MenuInput : MonoBehaviour
       switch (UIManager.ActiveButtonType())
       {
         case EButtonType.Move:
-          MoveUnit();
+          FinishUnitMove();
+          UIManager.HideButtons();
+          _inputManager.InputState = InputState.Movement;
+          _cursor.enabled = true;
           break;
         case EButtonType.Attack:
-          Debug.LogError("Attack is not implemented yet");
+          _inputManager.AddStateToHistory(InputState.ActionMenu);
+          UIManager.HideButtons();
+          _inputManager.InputState = InputState.SelectingUnitToAttack;
+          _unitToAttackInput.Setup();
           break;
         default:
           Debug.LogError("Unrecognized Button type");
           break;
       }
 
-      UIManager.HideButtons();
-      _inputManager.InputState = InputState.Movement;
-      _cursor.enabled = true;
     } else if (_inputManager.CancelDown)
     {
+      _cursor.SelectedUnit.Move(PreviousTile);
       UIManager.HideButtons();
       _inputManager.InputState = InputState.Movement;
       _cursor.enabled = true;
@@ -45,13 +51,12 @@ public class MenuInput : MonoBehaviour
     }
   }
 
-  private void MoveUnit()
+  private void FinishUnitMove()
   {
-    _cursor.SelectedUnit.Move(_cursor.HoveredTile);
-    _battleManager.BattleTurnManager.DeactivateUnit(_cursor.SelectedUnit);
     BattleMovementUtils.HidePath();
     BattleMovementUtils.ResetPath();
     _battleManager.OverlaysManager.DisableUnitOverlays();
+    _battleManager.BattleTurnManager.DeactivateUnit(_cursor.SelectedUnit);
     _cursor.DeselectUnit();
   }
 }

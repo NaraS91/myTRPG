@@ -4,6 +4,7 @@ public class MovementInput : MonoBehaviour
 {
   [SerializeField] private BattleManager _battleManager;
   [SerializeField] private InputManager _inputManager;
+  [SerializeField] private ActionMenuInput _menuInput;
   private Cursor _cursor;
 
   private void Start()
@@ -20,8 +21,11 @@ public class MovementInput : MonoBehaviour
       {
         if (_cursor.IsInRangeOfSelectedUnit())
         {
-          _cursor.enabled = false;
           _inputManager.InputState = InputState.ActionMenu;
+          _menuInput.PreviousTile = _cursor.SelectedUnit.OccupiedTile;
+          _cursor.enabled = false;
+          _cursor.SelectedUnit.Move(_cursor.HoveredTile);
+          //TODO: show only viable buttons
           UIManager.ShowButtons(2, new string[]{"Move", "Attack"});
         }
       }
@@ -37,6 +41,12 @@ public class MovementInput : MonoBehaviour
           //TODO: pressing select on unit from other group
         }
       }
+    } else if (_inputManager.CancelDown)
+    {
+      BattleMovementUtils.HidePath();
+      BattleMovementUtils.ResetPath();
+      _battleManager.OverlaysManager.DisableUnitOverlays();
+      _cursor.DeselectUnit();
     }
   }
 }
