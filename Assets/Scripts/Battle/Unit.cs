@@ -11,6 +11,8 @@ public class Unit : MonoBehaviour
   public int Resist;
   public int Speed;
   public int Dexterity;
+  public int Exp { get; private set; }
+  public int ExpForLevelUp { get; private set; }
   public Weapon EquippedWeapon { get; private set; }
 
   public bool Flyier { get; private set; } = false;
@@ -69,7 +71,6 @@ public class Unit : MonoBehaviour
       && (tile.Walkable || (tile.Flyable && Flyier));
   }
 
-
   //Move unit to selected Tile
   public void Move(Tile tile)
   {
@@ -77,6 +78,47 @@ public class Unit : MonoBehaviour
     newUnitPosition.y = transform.position.y;
     transform.position = newUnitPosition;
     UpdateTile();
+  }
+
+  public int AttackPower()
+  {
+    if(EquippedWeapon == null)
+    {
+      return 0;
+    }
+
+    switch (EquippedWeapon.DamageType)
+    {
+      case EDamageType.Magical:
+        return EquippedWeapon.Power + Magic;
+      case EDamageType.Physical:
+        return EquippedWeapon.Power + Attack;
+      default:
+        Debug.LogError("damage type not implemented");
+        return -1;
+    }
+  }
+
+  public void GainExp(int expGained)
+  {
+    if(expGained < 0)
+    {
+      Debug.LogError("Unit cannot gain negative number of exp");
+    } else
+    {
+      Exp += expGained;
+    }
+
+    while(Exp >= ExpForLevelUp)
+    {
+      Exp -= ExpForLevelUp;
+      LevelUp();
+    }
+  }
+
+  private void LevelUp()
+  {
+    Level++;
   }
 
 }

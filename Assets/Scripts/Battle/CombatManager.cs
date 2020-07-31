@@ -1,25 +1,44 @@
 ﻿using System;
+using UnityEngine;
 
-public static class CombatManager
+public class CombatManager
 {
-
-  //returns true when defenders hp goes to 0
-  public static bool DefaultCombat(Unit attacker, Unit defender)
+  public static void DefaultCombat(Unit attacker, Unit defender)
   {
-    int dmg = attacker.EquippedWeapon.Power;
+    DealDMG(attacker.Attack, attacker.EquippedWeapon.DamageType, defender);
+    if(defender.Health == 0)
+    {
+      OnUnitDefeat(defender);
+    }
+  }
 
-    switch (attacker.EquippedWeapon.DamageType)
+  //Deals dmg to RecivingUnit, caps minimum hp at 0
+  private static void DealDMG
+    (int attackPower, EDamageType damageType, Unit RecivingUnit)
+  {
+    int dmg = attackPower;
+
+    switch (damageType)
     {
       case EDamageType.Magical:
-        dmg += attacker.Magic - defender.Resist;
+        dmg -= RecivingUnit.Resist;
         break;
       case EDamageType.Physical:
-        dmg += attacker.Attack - defender.Defense;
+        dmg -= RecivingUnit.Defense;
+        break;
+      default:
+        Debug.LogError("damageType not implemented");
         break;
     }
 
-    if (dmg > 0) defender.Health = Math.Max(defender.Health - dmg, 0);
+    if (dmg < 0) return;
 
-    return defender.Health == 0;
+    RecivingUnit.Health = Math.Max(RecivingUnit.Health - dmg, 0);
+  }
+
+  private static void OnUnitDefeat(Unit unit)
+  {
+    unit.FreeTile();
+    unit.gameObject.SetActive(false);
   }
 }

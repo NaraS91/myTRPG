@@ -41,25 +41,27 @@ public class UnitToAttackInput : MonoBehaviour
       _inputManager.InputState = InputState.Movement;
       _cursor.enabled = true;
 
-    } else if (_inputManager.CancelDown)
+    }
+    else if (_inputManager.CancelDown)
     {
       UIManager.ShowPreviousButtons();
       _inputManager.GoToPreviousState();
       _cameraMover.ResetTarget();
-    } else if (_inputManager.LeftDirection)
+    }
+    else if (Input.GetButtonDown("Change Enemy"))
     {
-      if(_currentEnemy > 0)
+      if (Input.GetAxisRaw("Change Enemy") > 0)
       {
-        _currentEnemy--;
-        CenterCameraOnEnemy();
-      }
-    } else if (_inputManager.RightDirection)
-    {
-      if(_currentEnemy < _enemiesInRange.Count - 1)
+        _currentEnemy = (_currentEnemy + 1) % _enemiesInRange.Count;
+      } 
+      else
       {
-        _currentEnemy++;
-        CenterCameraOnEnemy();
+        //keeps modulo positive
+        _currentEnemy = ((_currentEnemy - 1) % _enemiesInRange.Count 
+                        + _enemiesInRange.Count) % _enemiesInRange.Count;
       }
+
+      CenterCameraOnEnemy();
     }
   }
 
