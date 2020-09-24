@@ -74,8 +74,11 @@ public class BattleTurnManager : MonoBehaviour
     _numberOfActiveUnits = 0;
     foreach (Unit unit in Groups[ActiveGroup])
     {
-      unit.Selectable = true;
-      _numberOfActiveUnits++;
+      if (unit.Health != 0)
+      {
+        unit.Selectable = true;
+        _numberOfActiveUnits++;
+      }
     }
   }
 
