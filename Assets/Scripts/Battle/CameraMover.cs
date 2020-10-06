@@ -25,11 +25,14 @@ public class CameraMover : MonoBehaviour
     transform.position = CameraOffset + _target.transform.position;
   }
 
+
+  //camera centers at cursor
   public void ResetTarget()
   {
     _target = _cursor;
   }
 
+  //camera centers at given game object
   public void ChangeTarget(GameObject gameObject)
   {
     _target = gameObject;

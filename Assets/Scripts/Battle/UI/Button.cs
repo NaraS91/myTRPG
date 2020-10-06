@@ -12,6 +12,7 @@ public class Button : MonoBehaviour
   [SerializeField] private float[] _hoveredTextRGB;
   public EButtonType Type { get; private set; }
 
+  //checks if button is valid
   private void Awake()
   {
     if(_text == null || _backgroundImage == null || _hoveredTextRGB == null ||
@@ -28,6 +29,7 @@ public class Button : MonoBehaviour
     }
   }
 
+  //flags this button as active
   public void HoveredOver()
   {
     _text.color
@@ -36,6 +38,7 @@ public class Button : MonoBehaviour
     _hoveredBackgroundImage.SetActive(true);
   }
 
+  //button is no longer active
   public void NotHoveredOver()
   {
     _text.color = new Color(_textRGB[0], _textRGB[1], _textRGB[2]);

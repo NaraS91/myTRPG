@@ -83,6 +83,7 @@ public class BattleMovementUtils
   }
 
   //PRE:: minAttackRange <= maxAttackRange
+  //returns tiles that are in range of unit attack
   public static ISet<Tile> FindAttackedTiles
     (ISet<Tile> viableMoves, int minAttackRange, int maxAttackRange)
   {
@@ -98,7 +99,7 @@ public class BattleMovementUtils
     return result;
   }
 
-
+  // returns tiles unit can move to
   public static ISet<Tile> FindViableMoves(Unit unit)
   {
     ISet<Tile> result = new HashSet<Tile>();
@@ -146,6 +147,7 @@ public class BattleMovementUtils
   }
 
   //PRE: tile is in reach of unit
+  //returns viable path from unit to targetTile (A* algorithm)
   private static void RecalculatePath(Unit unit, Tile targetTile)
   {
     //PathTile represents path in a similar way to linkedList
@@ -182,6 +184,7 @@ public class BattleMovementUtils
     RecreatePath(curr);
   }
 
+  //translates path encoded in PathTile type to classes linkedlist _path
   private static void RecreatePath(PathTile endTile)
   {
     ResetPath();
@@ -195,6 +198,8 @@ public class BattleMovementUtils
     }
   }
 
+  //heuristic function to underevaluate the real distance between tiles
+  //here its just geometric distance between middles of the tiles
   private static int AproxDistance(Tile from, Tile to)
   {
     return (int) Math.Abs(from.transform.position.x - to.transform.position.x)

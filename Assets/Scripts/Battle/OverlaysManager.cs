@@ -41,6 +41,7 @@ public class OverlaysManager
     _battleMovement.EnemyUnits.Clear();
   }
 
+  //disables overlays corresponding to the given tiles
   private void DisableOverlays(ISet<Tile> tiles)
   {
     foreach (Tile tile in tiles)
@@ -51,6 +52,7 @@ public class OverlaysManager
     tiles.Clear();
   }
 
+  //displays overlays
   public void EnableUnitOverlays()
   {
 

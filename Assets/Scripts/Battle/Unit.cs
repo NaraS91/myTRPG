@@ -80,6 +80,7 @@ public class Unit : MonoBehaviour
     UpdateTile();
   }
 
+  //calculates current attack power of unit (includeing equipped weapon)
   public int AttackPower()
   {
     if(EquippedWeapon == null)

@@ -7,6 +7,7 @@ public class BattleTurnManager : MonoBehaviour
 
   public Dictionary<int, ISet<Unit>> Groups;
   public int ActiveGroup { get; private set; }
+  //groups in an alliance cant attack each other
   private HashSet<Tuple<int, int>> _alliances = new HashSet<Tuple<int, int>>();
   private int _numberOfGroups = 0;
   private int _numberOfActiveUnits;
@@ -47,6 +48,7 @@ public class BattleTurnManager : MonoBehaviour
     }
   }
 
+  //Deactivated unit can no longer move this turn
   public void DeactivateUnit(Unit unit)
   {
     if (unit.Group == ActiveGroup && unit.Selectable)
@@ -61,6 +63,7 @@ public class BattleTurnManager : MonoBehaviour
     }
   }
 
+  //chekcs if 2 fighting groups are in alliance.
   public bool InAlliance(int group1, int group2)
   {
     Tuple<int, int> pair1 = new Tuple<int, int>(group1, group2);

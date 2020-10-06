@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FightingUnit : Unit
 {
-  //TODO: update stats!
+  //TODO: delete(?)
   private int Attack { get; set; }
   private int Defense { get; set; }
 

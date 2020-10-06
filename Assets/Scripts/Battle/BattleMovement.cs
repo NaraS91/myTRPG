@@ -19,6 +19,7 @@ public class BattleMovement
     _battleTurnManager = battleTurnManager;
   }
 
+  //calculates possible movement for unit on new tile
   public void OnNewTile(Tile tile)
   {
     CurrentUnit = null;
@@ -37,6 +38,7 @@ public class BattleMovement
     }
   }
 
+  //returns enemy units, current unit can attack
   public ICollection<Unit> GetAttackedUnits()
   {
     if(CurrentUnit == null)

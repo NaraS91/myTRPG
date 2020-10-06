@@ -14,6 +14,7 @@ public class UnitToAttackInput : MonoBehaviour
 
   private void Awake()
   {
+    //sets up camera and cursor
     _cameraGO = GameObject.FindGameObjectWithTag("MainCamera");
     if(_cameraGO == null)
     {

@@ -21,6 +21,8 @@ public class InputManager : MonoBehaviour
   private float _previousVertical;
   private float _previousHorizontal;
   private const float _controllerSensitivity = 0.1f;
+  //if current input state ends without indicating next one,
+  //current input state will be assigned to enxt on the stack
   private Stack<InputState> _previousStates = new Stack<InputState>();
 
   private void Awake()
@@ -84,6 +86,7 @@ public class InputManager : MonoBehaviour
     ReadVerticalAxis();
   }
 
+  //TODO: simplify, see "change enemy" button in UnitToAttackInput
   private void ReadVerticalAxis()
   {
     float verticalAxis = Input.GetAxis("Vertical");
@@ -109,6 +112,7 @@ public class InputManager : MonoBehaviour
     _previousVertical = verticalAxis;
   }
 
+  //TODO: simplify, see "change enemy" button in UnitToAttackInput
   private void ReadHorizontalAxis()
   {
     float horizontalAxis = Input.GetAxis("Horizontal");
