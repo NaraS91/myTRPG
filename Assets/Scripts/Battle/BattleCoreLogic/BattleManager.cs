@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-
+//Initial setup and references to vital objects controlling the game.
 public class BattleManager : MonoBehaviour
 {
   public const int TILES_LAYER = 1 << 8;

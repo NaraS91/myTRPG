@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class FightingUnit : Unit
 {
-  //TODO: delete(?)
-  private int Attack { get; set; }
-  private int Defense { get; set; }
-
   // Start is called before the first frame update
   void Start()
   {

@@ -8,6 +8,7 @@ public class Button : MonoBehaviour
   [SerializeField] private Text _text;
   [SerializeField] private GameObject _backgroundImage;
   [SerializeField] private GameObject _hoveredBackgroundImage;
+  //text color represented by 3 rgb float values
   [SerializeField] private float[] _textRGB;
   [SerializeField] private float[] _hoveredTextRGB;
   public EButtonType Type { get; private set; }

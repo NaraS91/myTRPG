@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-//used for debug.log
-using UnityEngine;
 
 //order of values with the same priority is undefined
 public class PriorityQueue<T>
@@ -21,6 +19,7 @@ public class PriorityQueue<T>
   private List<Item> items = new List<Item>();
   public int Count { get; private set; } = 0;
 
+  //higher priority -> pops earlier
   public void Push(T itemValue, int priority)
   {
     int curr = Count++;
@@ -51,6 +50,12 @@ public class PriorityQueue<T>
     items[0] = items[Count];
     FixHeap();
 
+    items.RemoveAt(Count);
+    if(items.Capacity / 4 > Count)
+    {
+      items.Capacity = Count * 2;
+    }
+
     return result;
   }
 
@@ -64,6 +69,7 @@ public class PriorityQueue<T>
     return items[0].Value;
   }
 
+  //assumes heap is correct expect the head of heap
   private void FixHeap()
   {
     int curr = 0;
@@ -102,62 +108,5 @@ public class PriorityQueue<T>
     }
 
     items[curr] = item;
-  }
-
-
-  private void testPriorityQueue()
-  {
-    PriorityQueue<int> pQueue = new PriorityQueue<int>();
-    for (int i = 0; i < 10; i++)
-    {
-      pQueue.Push(i, 10 - i);
-    }
-
-    Debug.Log("increasing");
-    while (pQueue.Count > 0)
-    {
-      Debug.Log(String.Format("value: {0}", pQueue.Pop()));
-    }
-
-    for (int i = 0; i < 10; i++)
-    {
-      pQueue.Push(i, i);
-    }
-
-    Debug.Log("decreasing");
-    while (pQueue.Count > 0)
-    {
-      Debug.Log(String.Format("value: {0}", pQueue.Pop()));
-    }
-
-    for (int i = 0; i < 10; i++)
-    {
-      pQueue.Push(i, i % 2);
-    }
-
-    Debug.Log("odd first");
-    while (pQueue.Count > 0)
-    {
-      Debug.Log(String.Format("value: {0}", pQueue.Pop()));
-    }
-
-    var random = new System.Random();
-    for (int i = 0; i < 100; i++)
-    {
-      int randomInt = random.Next();
-      pQueue.Push(randomInt, randomInt);
-    }
-
-    int temp1 = int.MaxValue;
-    int temp2 = 0;
-    while (pQueue.Count > 0)
-    {
-      temp2 = pQueue.Pop();
-      if (temp2 > temp1)
-      {
-        Debug.Log("BUG");
-      }
-      temp1 = temp2;
-    }
   }
 }
