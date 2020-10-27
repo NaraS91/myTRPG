@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class CameraMover : MonoBehaviour
 {
-  public Vector3 CameraOffset;
+  private Vector3 _defaultOffset;
   private GameObject _cursor;
   private GameObject _target;
+  private Vector3 _extraOffset = Vector3.zero;
 
   // Start is called before the first frame update
   void Start()
   {
+    _defaultOffset = new Vector3(0, 4, -4);
     _cursor = GameObject.FindGameObjectWithTag("Cursor");
     if(_cursor == null)
     {
@@ -22,7 +24,8 @@ public class CameraMover : MonoBehaviour
   // Update is called once per frame
   void Update()
   {
-    transform.position = CameraOffset + _target.transform.position;
+    transform.position 
+      = _defaultOffset + _target.transform.position + _extraOffset;
   }
 
 
@@ -36,5 +39,12 @@ public class CameraMover : MonoBehaviour
   public void ChangeTarget(GameObject gameObject)
   {
     _target = gameObject;
+    _extraOffset = Vector3.zero;
+  }
+
+  public void ChangeTarget(GameObject gameObject, Vector3 offset)
+  {
+    _target = gameObject;
+    _extraOffset = offset;
   }
 }
