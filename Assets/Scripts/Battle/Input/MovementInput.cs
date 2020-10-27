@@ -21,13 +21,20 @@ public class MovementInput : MonoBehaviour
       {
         if (_cursor.IsInRangeOfSelectedUnit())
         {
-          _inputManager.InputState = InputState.ActionMenu;
-          _menuInput.PreviousTile = _cursor.SelectedUnit.OccupiedTile;
-          _cursor.enabled = false;
-          _cursor.SelectedUnit.Move(_cursor.HoveredTile);
-          //TODO: show only viable buttons
-          UIManager.ShowButtons(2, new string[]{"Move", "Attack"});
-        }
+          if (!_cursor.HoveredTile.IsOccupied())
+          {
+            _inputManager.InputState = InputState.ActionMenu;
+            _menuInput.PreviousTile = _cursor.SelectedUnit.OccupiedTile;
+            _cursor.enabled = false;
+            _cursor.SelectedUnit.Move(_cursor.HoveredTile);
+            //TODO: show only viable buttons
+            UIManager.ShowButtons(2, new string[] { "Move", "Attack" });
+          }
+          else
+          {
+            //TODO: unit tries to move on occupied tile
+          }
+         }
       }
       else if (_cursor.HoveredTile.IsOccupied())
       {
@@ -41,7 +48,8 @@ public class MovementInput : MonoBehaviour
           //TODO: pressing select on unit from other group
         }
       }
-    } else if (_inputManager.CancelDown)
+    } 
+    else if (_inputManager.CancelDown)
     {
       BattleMovementUtils.HidePath();
       BattleMovementUtils.ResetPath();
