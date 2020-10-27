@@ -26,7 +26,8 @@ public class MovementInput : MonoBehaviour
       {
         if (_cursor.IsInRangeOfSelectedUnit())
         {
-          if (!_cursor.HoveredTile.IsOccupied())
+          if (!_cursor.HoveredTile.IsOccupied() || 
+              _cursor.HoveredTile.Occupier.Equals(_cursor.SelectedUnit))
           {
             _inputManager.InputState = InputState.ActionMenu;
             _actionMenuInput.PreviousTile = _cursor.SelectedUnit.OccupiedTile;
