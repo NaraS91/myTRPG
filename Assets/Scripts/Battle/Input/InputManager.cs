@@ -6,9 +6,6 @@ using UnityEngine.Animations;
 public class InputManager : MonoBehaviour
 {
   [SerializeField] private BattleManager _battleManager;
-  [SerializeField] private MovementInput _movementInput;
-  [SerializeField] private ActionMenuInput _menuInput;
-  [SerializeField] private UnitToAttackInput _unitToAttackInput;
   private Cursor _cursor;
   public bool MenuIsUp { get; private set; } = false;
   public InputState InputState { get; set; } = InputState.Movement;
@@ -21,13 +18,19 @@ public class InputManager : MonoBehaviour
   private float _previousVertical;
   private float _previousHorizontal;
   private const float _controllerSensitivity = 0.1f;
+ 
+  public ActionMenuInput ActionMenuInput { get; private set;}
+  public MovementInput MovementInput { get; private set; }
+  public UnitToAttackInput UnitToAttackInput { get; private set; }
   //if current input state ends without indicating next one,
   //current input state will be assigned to enxt on the stack
   private Stack<InputState> _previousStates = new Stack<InputState>();
 
   private void Awake()
   {
-
+    ActionMenuInput = new ActionMenuInput();
+    MovementInput = new MovementInput();
+    UnitToAttackInput = new UnitToAttackInput();
   }
 
   // Start is called before the first frame update
@@ -35,6 +38,9 @@ public class InputManager : MonoBehaviour
   {
     //variable created to make code cleaner
     _cursor = _battleManager.Cursor;
+    ActionMenuInput.SetupDependecies(_battleManager, this, UnitToAttackInput);
+    MovementInput.SetupDependecies(_battleManager, this, ActionMenuInput);
+    UnitToAttackInput.SetupDependecies(_battleManager, this);
   }
 
   // Update is called once per frame
@@ -49,13 +55,13 @@ public class InputManager : MonoBehaviour
     switch (InputState)
     {
       case InputState.Movement:
-        _movementInput.HandleInput();
+        MovementInput.HandleInput();
         break;
       case InputState.ActionMenu:
-        _menuInput.HandleInput();
+        ActionMenuInput.HandleInput();
         break;
       case InputState.SelectingUnitToAttack:
-        _unitToAttackInput.HandleInput();
+        UnitToAttackInput.HandleInput();
         break;
       default:
         Debug.LogError("Invalid InputState value");

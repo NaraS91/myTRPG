@@ -4,12 +4,17 @@ public class MovementInput : MonoBehaviour
 {
   [SerializeField] private BattleManager _battleManager;
   [SerializeField] private InputManager _inputManager;
-  [SerializeField] private ActionMenuInput _menuInput;
+  [SerializeField] private ActionMenuInput _actionMenuInput;
   private Cursor _cursor;
 
-  private void Start()
+  public void SetupDependecies
+    (BattleManager battleManager, InputManager inputManager,
+     ActionMenuInput actionMenuInput)
   {
+    _battleManager = battleManager;
     _cursor = _battleManager.Cursor;
+    _inputManager = inputManager;
+    _actionMenuInput = actionMenuInput;
   }
 
 
@@ -24,7 +29,7 @@ public class MovementInput : MonoBehaviour
           if (!_cursor.HoveredTile.IsOccupied())
           {
             _inputManager.InputState = InputState.ActionMenu;
-            _menuInput.PreviousTile = _cursor.SelectedUnit.OccupiedTile;
+            _actionMenuInput.PreviousTile = _cursor.SelectedUnit.OccupiedTile;
             _cursor.enabled = false;
             _cursor.SelectedUnit.Move(_cursor.HoveredTile);
             //TODO: show only viable buttons

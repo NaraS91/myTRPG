@@ -2,6 +2,7 @@
 using UnityEngine;
 
 //Initial setup and references to vital objects controlling the game.
+[RequireComponent(typeof(BattleTurnManager))]
 public class BattleManager : MonoBehaviour
 {
   public const int TILES_LAYER = 1 << 8;
@@ -16,7 +17,6 @@ public class BattleManager : MonoBehaviour
   [SerializeField] public int TilesDistance { get; private set; }
   public static int XOffset { get; private set; }
   public static int ZOffset { get; private set; }
-
   public Cursor Cursor { get; private set; }
   public OverlaysManager OverlaysManager { get; } = new OverlaysManager();
   public BattleTurnManager BattleTurnManager { get; private set; }

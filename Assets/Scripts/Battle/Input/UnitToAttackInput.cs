@@ -1,33 +1,30 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class UnitToAttackInput : MonoBehaviour
+public class UnitToAttackInput
 {
-  [SerializeField] private BattleManager _battleManager;
-  [SerializeField] private InputManager _inputManager;
-  [SerializeField] private CameraMover _cameraMover;
+  private BattleManager _battleManager;
+  private InputManager _inputManager;
+  private CameraMover _cameraMover;
   private Cursor _cursor;
   private Unit _attackingUnit;
   private List<Unit> _enemiesInRange;
   private int _currentEnemy;
-  private GameObject _cameraGO;
 
-  private void Awake()
+  public void SetupDependecies(BattleManager battleManager,
+                               InputManager inputManager)
   {
-    //sets up camera and cursor
-    _cameraGO = GameObject.FindGameObjectWithTag("MainCamera");
-    if(_cameraGO == null)
+    _cursor = battleManager.Cursor;
+    _battleManager = battleManager;
+    _inputManager = inputManager;
+    GameObject cameraGO = GameObject.FindGameObjectWithTag("MainCamera");
+
+    if (cameraGO == null)
     {
       Debug.LogError("Main Camera wasnt found");
     }
 
-    GameObject cursorGO = GameObject.FindGameObjectWithTag("Cursor");
-    if(cursorGO == null)
-    {
-      Debug.LogError("Cursor wasnt found");
-    }
-
-    _cursor = cursorGO.GetComponent<Cursor>();
+    _cameraMover = cameraGO.GetComponent<CameraMover>();
   }
 
   public void HandleInput()

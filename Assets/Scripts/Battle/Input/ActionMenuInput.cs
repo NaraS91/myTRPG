@@ -1,16 +1,22 @@
 ﻿using UnityEngine;
 
-public class ActionMenuInput : MonoBehaviour
+public class ActionMenuInput
 {
-  [SerializeField] private BattleManager _battleManager;
-  [SerializeField] private InputManager _inputManager;
-  [SerializeField] private UnitToAttackInput _unitToAttackInput;
+  private BattleManager _battleManager;
+  private InputManager _inputManager;
+  private UnitToAttackInput _unitToAttackInput;
   public Tile PreviousTile {get; set;}
   private Cursor _cursor;
 
-  private void Start()
+  //call before using this class
+  public void SetupDependecies
+    (BattleManager battleManager, InputManager inputManager,
+     UnitToAttackInput unitToAttackInput)
   {
-    _cursor = _battleManager.Cursor;
+    _cursor = battleManager.Cursor;
+    _battleManager = battleManager;
+    _inputManager = inputManager;
+    _unitToAttackInput = unitToAttackInput;
   }
 
   public void HandleInput()
