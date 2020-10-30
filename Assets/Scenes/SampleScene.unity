@@ -5482,7 +5482,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41845da5f32651f4da2c94fee67bc0cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CameraOffset: {x: 0, y: 8.5, z: -10}
 --- !u!1 &996397955
 GameObject:
   m_ObjectHideFlags: 0
@@ -7377,7 +7376,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1490786882}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 52bc50ab6cb9ab3489b38fbd1b0c6ac6, type: 3}
+  m_Script: {fileID: 11500000, guid: 63c3a0d34ed558540a45713ebe2d5075, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Overlay: {fileID: 1517625967664799914, guid: 73cb40278d759f44288d85940b30917d, type: 3}
@@ -7487,7 +7486,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1492454295}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 52bc50ab6cb9ab3489b38fbd1b0c6ac6, type: 3}
+  m_Script: {fileID: 11500000, guid: 63c3a0d34ed558540a45713ebe2d5075, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Overlay: {fileID: 1517625967664799914, guid: 73cb40278d759f44288d85940b30917d, type: 3}
@@ -8242,9 +8241,7 @@ GameObject:
   - component: {fileID: 1611587763}
   - component: {fileID: 1611587766}
   - component: {fileID: 1611587765}
-  - component: {fileID: 1611587768}
   - component: {fileID: 1611587767}
-  - component: {fileID: 1611587769}
   m_Layer: 0
   m_Name: BattleManager
   m_TagString: BattleManager
@@ -8292,9 +8289,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _battleManager: {fileID: 1611587763}
-  _movementInput: {fileID: 1611587767}
-  _menuInput: {fileID: 1611587768}
-  _unitToAttackInput: {fileID: 1611587769}
 --- !u!114 &1611587766
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8321,37 +8315,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _battleManager: {fileID: 1611587763}
   _inputManager: {fileID: 1611587765}
-  _menuInput: {fileID: 1611587768}
---- !u!114 &1611587768
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1611587762}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95ccadb8a96a66d48b9346709a5c0d2e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _battleManager: {fileID: 1611587763}
-  _inputManager: {fileID: 1611587765}
-  _unitToAttackInput: {fileID: 1611587769}
---- !u!114 &1611587769
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1611587762}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73680bb389f30a14f8c0d77ece2a14d6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _battleManager: {fileID: 1611587763}
-  _inputManager: {fileID: 1611587765}
-  _cameraMover: {fileID: 963194229}
 --- !u!1 &1623999582
 GameObject:
   m_ObjectHideFlags: 0

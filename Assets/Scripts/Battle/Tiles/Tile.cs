@@ -5,12 +5,11 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
-
-  public bool Walkable { get; set; } = true;
-  public bool Flyable { get; set; } = true;
-  public bool Current { get; set; } = false;
-  public int Cost { get; } = 1;
-  public int Height { get; private set; } = 1;
+  public bool Walkable { get; protected set; } = true;
+  public bool Flyable { get; protected set; } = true;
+  public bool Current { get; protected set; } = false;
+  public int Cost { get; protected set; } = 1;
+  public int Height { get; protected set; } = 1;
   public Unit Occupier { get; private set; }
   public Tile ForwardTile { get; private set; }
   public Tile RightTile { get; private set; }
@@ -22,6 +21,7 @@ public class Tile : MonoBehaviour
   // Start is called before the first frame update
   void Start()
   {
+    SetProperties();
     FindAdjacentTiles();
     Overlay = Instantiate(BattleManager.DefaultOverlay, transform);
     Overlay.transform.position = transform.position;
@@ -122,4 +122,8 @@ public class Tile : MonoBehaviour
                                          x + BattleManager.XOffset];
     }
   }
+
+  //function designed to be overwritten by childs of Tile class to
+  //change default values at Start().
+  protected virtual void SetProperties() { }
 }
