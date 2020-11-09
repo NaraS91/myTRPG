@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class BattleMovementUtils
 {
-  private static LinkedList<Tile> _path = new LinkedList<Tile>();
+  public static LinkedList<Tile> Path { get; private set; } = new LinkedList<Tile>();
   private static int _cost = 0;
 
   private class PathTile
@@ -24,7 +24,7 @@ public class BattleMovementUtils
 
   public static void ResetPath()
   {
-    _path.Clear();
+    Path.Clear();
     _cost = 0;
   }
 
@@ -42,24 +42,24 @@ public class BattleMovementUtils
     {
       ResetPath();
     }
-    else if (_path.Contains(tile))
+    else if (Path.Contains(tile))
     {
-      while (_path.Count != 0 && _path.Last.Value != tile)
+      while (Path.Count != 0 && Path.Last.Value != tile)
       {
-        _cost -= _path.Last.Value.Cost;
-        _path.RemoveLast();
+        _cost -= Path.Last.Value.Cost;
+        Path.RemoveLast();
       }
     }
-    else if (unit.Movement < _cost + tile.Cost || (_path.Count > 0 &&
-             !_path.Last.Value.GetAdjacentTiles().Contains(tile)) ||
-             (_path.Count == 0 &&
+    else if (unit.Movement < _cost + tile.Cost || (Path.Count > 0 &&
+             !Path.Last.Value.GetAdjacentTiles().Contains(tile)) ||
+             (Path.Count == 0 &&
              !tile.GetAdjacentTiles().Contains(unit.OccupiedTile)))
     {
       RecalculatePath(unit, tile);
     } 
     else
     { 
-      _path.AddLast(tile);
+      Path.AddLast(tile);
       _cost += tile.Cost;
     }
   }
@@ -67,7 +67,7 @@ public class BattleMovementUtils
   
   public static void ShowPath()
   {
-    foreach(Tile tile in _path)
+    foreach(Tile tile in Path)
     {
       tile.gameObject.GetComponent<MeshRenderer>().material.color = Color.blue;
     }
@@ -76,7 +76,7 @@ public class BattleMovementUtils
 
   public static void HidePath()
   {
-    foreach (Tile tile in _path)
+    foreach (Tile tile in Path)
     {
       tile.gameObject.GetComponent<MeshRenderer>().material.color = Color.white;
     }
@@ -193,7 +193,7 @@ public class BattleMovementUtils
 
     while(curr.Prev != null)
     {
-      _path.AddFirst(curr.Curr);
+      Path.AddFirst(curr.Curr);
       curr = curr.Prev;
     }
   }

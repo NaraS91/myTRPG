@@ -30,7 +30,6 @@ public class MovementInput : MonoBehaviour
               _cursor.HoveredTile.Occupier.Equals(_cursor.SelectedUnit))
           {
             _inputManager.InputState = InputState.ActionMenu;
-            _actionMenuInput.PreviousTile = _cursor.SelectedUnit.OccupiedTile;
             _cursor.enabled = false;
             _cursor.SelectedUnit.Move(_cursor.HoveredTile);
             //TODO: show only viable buttons

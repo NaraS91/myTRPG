@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Animations;
 
@@ -18,6 +19,8 @@ public class InputManager : MonoBehaviour
   private float _previousVertical;
   private float _previousHorizontal;
   private const float _controllerSensitivity = 0.1f;
+
+  private Unit _movingUnit;
  
   public ActionMenuInput ActionMenuInput { get; private set;}
   public MovementInput MovementInput { get; private set; }
@@ -46,8 +49,16 @@ public class InputManager : MonoBehaviour
   // Update is called once per frame
   void Update()
   {
-    ReadInput();
-    HandleInput();
+    if (_movingUnit == null || !_movingUnit.isMoving)
+    {
+      ReadInput();
+      HandleInput();
+    }
+  }
+
+  public void WaitForMovingUnit(Unit unit)
+  {
+    _movingUnit = unit;
   }
 
   void HandleInput()
@@ -67,6 +78,11 @@ public class InputManager : MonoBehaviour
         Debug.LogError("Invalid InputState value");
         break;
     }
+  }
+
+  public void StopInput()
+  {
+
   }
 
   public void GoToPreviousState()

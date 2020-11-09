@@ -1,4 +1,8 @@
-﻿using UnityEngine;
+﻿using JetBrains.Annotations;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEditor.UIElements;
+using UnityEngine;
 
 public class Unit : MonoBehaviour
 {
@@ -20,6 +24,10 @@ public class Unit : MonoBehaviour
   public int Group;
   public bool Selectable { get; set; } = false;
   public bool Selected;
+
+  public bool isMoving { get; private set; } = false;
+  private Tile _previousTile;
+  
 
   private void Awake()
   {
@@ -74,10 +82,57 @@ public class Unit : MonoBehaviour
   //Move unit to selected Tile
   public void Move(Tile tile)
   {
+    _previousTile = OccupiedTile;
     Vector3 newUnitPosition = tile.transform.position;
     newUnitPosition.y = transform.position.y;
     transform.position = newUnitPosition;
     UpdateTile();
+  }
+
+  public void MoveToPreviousPosition()
+  {
+    Move(_previousTile);
+  }
+
+  public void StartMoveCoroutine(LinkedList<Tile> path)
+  {
+    _previousTile = OccupiedTile;
+    StartCoroutine(PrettyMove(path));
+  }
+
+  //moves unit using unit animation
+  IEnumerator PrettyMove(LinkedList<Tile> path)
+  {
+    isMoving = true;
+    int speed = 4;
+    Vector3 unitPosition = transform.position;
+    Debug.Log("hey");
+
+    foreach(Tile tile in path)
+    {
+      Debug.Log("new Tile yey");
+      if (tile.Equals(OccupiedTile))
+      {
+        continue;
+      }
+
+      Vector3 tilePosition = tile.transform.position;
+      bool isInTheTilesCenter = unitPosition.x == tilePosition.x &&
+                                unitPosition.z == tilePosition.z;
+      while (!isInTheTilesCenter)
+      {
+        UnitUtils.MoveTowards(this, tilePosition, speed * Time.deltaTime);
+        unitPosition = transform.position;
+        isInTheTilesCenter = unitPosition.x == tilePosition.x &&
+                             unitPosition.z == tilePosition.z;
+        yield return null;
+      }
+
+      tile.Visit(this);
+    }
+    Debug.Log("finished moving");
+    UpdateTile();
+    isMoving = false;
   }
 
   //calculates current attack power of unit (includeing equipped weapon)

@@ -123,6 +123,9 @@ public class Tile : MonoBehaviour
     }
   }
 
+  //apply any effects the tile has on unit when moved onto
+  public virtual void Visit(Unit unit) { }
+
   //function designed to be overwritten by childs of Tile class to
   //change default values at Start().
   protected virtual void SetProperties() { }

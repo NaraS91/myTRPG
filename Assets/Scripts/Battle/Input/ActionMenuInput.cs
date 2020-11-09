@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
 public class ActionMenuInput
 {
   private BattleManager _battleManager;
   private InputManager _inputManager;
   private UnitToAttackInput _unitToAttackInput;
-  public Tile PreviousTile {get; set;}
   private Cursor _cursor;
 
   //call before using this class
@@ -26,7 +27,8 @@ public class ActionMenuInput
       switch (UIManager.ActiveButtonType())
       {
         case EButtonType.Move:
-          FinishUnitMove();
+          _cursor.SelectedUnit.MoveToPreviousPosition();
+          ExecuteUnitMove();
           UIManager.HideButtons();
           _inputManager.InputState = InputState.Movement;
           _cursor.enabled = true;
@@ -44,7 +46,7 @@ public class ActionMenuInput
 
     } else if (_inputManager.CancelDown)
     {
-      _cursor.SelectedUnit.Move(PreviousTile);
+      _cursor.SelectedUnit.MoveToPreviousPosition();
       UIManager.HideButtons();
       _inputManager.InputState = InputState.Movement;
       _cursor.enabled = true;
@@ -57,11 +59,13 @@ public class ActionMenuInput
     }
   }
 
-  private void FinishUnitMove()
+  private void ExecuteUnitMove()
   {
     BattleMovementUtils.HidePath();
-    BattleMovementUtils.ResetPath();
     _battleManager.OverlaysManager.DisableUnitOverlays();
+    _cursor.SelectedUnit.StartMoveCoroutine(new LinkedList<Tile>(BattleMovementUtils.Path));
+    _inputManager.WaitForMovingUnit(_cursor.SelectedUnit);
+    BattleMovementUtils.ResetPath();
     _battleManager.BattleTurnManager.DeactivateUnit(_cursor.SelectedUnit);
     _cursor.DeselectUnit();
   }
