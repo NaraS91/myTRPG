@@ -43,10 +43,12 @@ public class MovementInput : MonoBehaviour
       }
       else if (_cursor.HoveredTile.IsOccupied())
       {
-        if (_cursor.HoveredTile.Occupier.Group ==
-          _battleManager.BattleTurnManager.ActiveGroup)
+        bool isUnitFromTheACtiveGroup = _cursor.HoveredTile.Occupier.Group ==
+                                  _battleManager.BattleTurnManager.ActiveGroup;
+        if (isUnitFromTheACtiveGroup)
         {
           _cursor.SelectUnit();
+          _battleManager.BattleMovement.OnNewTile(_cursor.HoveredTile);
         }
         else
         {
@@ -56,10 +58,14 @@ public class MovementInput : MonoBehaviour
     } 
     else if (_inputManager.CancelDown)
     {
-      BattleMovementUtils.HidePath();
-      BattleMovementUtils.ResetPath();
+      if (_cursor.UnitIsSelected)
+      {
+        BattleMovementUtils.HidePath();
+        BattleMovementUtils.ResetPath();
+        _cursor.DeselectUnit();
+      }
+
       _battleManager.OverlaysManager.DisableUnitOverlays();
-      _cursor.DeselectUnit();
     }
   }
 }
