@@ -8,6 +8,7 @@ public class InputManager : MonoBehaviour
 {
   [SerializeField] private BattleManager _battleManager;
   private Cursor _cursor;
+  private CameraMover _cameraMover;
   public bool MenuIsUp { get; private set; } = false;
   public InputState InputState { get; set; } = InputState.Movement;
   public bool SelectDown { get; private set; }
@@ -39,7 +40,7 @@ public class InputManager : MonoBehaviour
   // Start is called before the first frame update
   void Start()
   {
-    //variable created to make code cleaner
+    _cameraMover = _battleManager.CameraMover;
     _cursor = _battleManager.Cursor;
     ActionMenuInput.SetupDependecies(_battleManager, this, UnitToAttackInput);
     MovementInput.SetupDependecies(_battleManager, this, ActionMenuInput);
@@ -49,10 +50,18 @@ public class InputManager : MonoBehaviour
   // Update is called once per frame
   void Update()
   {
-    if (_movingUnit == null || !_movingUnit.isMoving)
+    if (_movingUnit == null)
     {
       ReadInput();
       HandleInput();
+    } 
+    else if (!_movingUnit.isMoving)
+    {
+      _movingUnit = null;
+      _cursor.SetCursorObjectState(true);
+      ResetCamera();
+      _battleManager.BattleTurnManager.DeactivateUnit(_cursor.SelectedUnit);
+      _cursor.DeselectUnit();
     }
   }
 
@@ -158,5 +167,30 @@ public class InputManager : MonoBehaviour
     }
 
     _previousHorizontal = horizontalAxis;
+  }
+
+  public void ExecuteUnitMove()
+  {
+    _cursor.Hide();
+
+    SetCameraOn(_cursor.SelectedUnit.gameObject);
+
+    BattleMovementUtils.HidePath();
+    _battleManager.OverlaysManager.DisableUnitOverlays();
+
+    _cursor.SelectedUnit.StartMoveCoroutine(new LinkedList<Tile>(BattleMovementUtils.Path));
+    
+    WaitForMovingUnit(_cursor.SelectedUnit);
+    BattleMovementUtils.ResetPath();
+  }
+
+  public void SetCameraOn(GameObject gameObject)
+  {
+    _cameraMover.ChangeTarget(gameObject);
+  }
+
+  public void ResetCamera()
+  {
+    _cameraMover.ResetTarget();
   }
 }

@@ -106,11 +106,9 @@ public class Unit : MonoBehaviour
     isMoving = true;
     int speed = 4;
     Vector3 unitPosition = transform.position;
-    Debug.Log("hey");
 
     foreach(Tile tile in path)
     {
-      Debug.Log("new Tile yey");
       if (tile.Equals(OccupiedTile))
       {
         continue;
@@ -130,7 +128,6 @@ public class Unit : MonoBehaviour
 
       tile.Visit(this);
     }
-    Debug.Log("finished moving");
     UpdateTile();
     isMoving = false;
   }

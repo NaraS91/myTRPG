@@ -28,7 +28,7 @@ public class ActionMenuInput
       {
         case EButtonType.Move:
           _cursor.SelectedUnit.MoveToPreviousPosition();
-          ExecuteUnitMove();
+          _inputManager.ExecuteUnitMove();
           UIManager.HideButtons();
           _inputManager.InputState = InputState.Movement;
           _cursor.enabled = true;
@@ -37,7 +37,7 @@ public class ActionMenuInput
           _inputManager.AddStateToHistory(InputState.ActionMenu);
           UIManager.HideButtons();
           _inputManager.InputState = InputState.SelectingUnitToAttack;
-          _unitToAttackInput.Setup();
+         // _unitToAttackInput.Setup();
           break;
         default:
           Debug.LogError("Unrecognized Button type");
@@ -57,16 +57,5 @@ public class ActionMenuInput
     {
       UIManager.PreviousButton();
     }
-  }
-
-  private void ExecuteUnitMove()
-  {
-    BattleMovementUtils.HidePath();
-    _battleManager.OverlaysManager.DisableUnitOverlays();
-    _cursor.SelectedUnit.StartMoveCoroutine(new LinkedList<Tile>(BattleMovementUtils.Path));
-    _inputManager.WaitForMovingUnit(_cursor.SelectedUnit);
-    BattleMovementUtils.ResetPath();
-    _battleManager.BattleTurnManager.DeactivateUnit(_cursor.SelectedUnit);
-    _cursor.DeselectUnit();
   }
 }

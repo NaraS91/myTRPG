@@ -96,4 +96,19 @@ public class Cursor : MonoBehaviour
     transform.Translate
       (horizontal * Time.deltaTime, 0, vertical * Time.deltaTime);
   }
+
+  public void Hide()
+  {
+    gameObject.SetActive(false);
+  }
+
+  public void SetCursorObjectState(bool state)
+  {
+    gameObject.SetActive(state);
+  }
+
+  public bool CurrentState()
+  {
+    return gameObject.activeSelf;
+  }
 }

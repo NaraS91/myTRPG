@@ -18,6 +18,7 @@ public class BattleManager : MonoBehaviour
   public static int XOffset { get; private set; }
   public static int ZOffset { get; private set; }
   public Cursor Cursor { get; private set; }
+  public CameraMover CameraMover { get; private set; }
   public OverlaysManager OverlaysManager { get; } = new OverlaysManager();
   public BattleTurnManager BattleTurnManager { get; private set; }
   public BattleMovement BattleMovement { get; private set; }
@@ -29,6 +30,8 @@ public class BattleManager : MonoBehaviour
     BattleMovement = new BattleMovement(OverlaysManager, BattleTurnManager);
     OverlaysManager.SetUp(BattleMovement);
     Cursor = CursorObject.GetComponent<Cursor>();
+    GameObject mainCameraGO = GameObject.FindGameObjectWithTag("MainCamera");
+    CameraMover = mainCameraGO.GetComponent<CameraMover>();
     DefaultOverlay = Cursor.Overlay;
     FindAllTiles();
   }

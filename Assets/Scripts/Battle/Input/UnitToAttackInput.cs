@@ -5,11 +5,11 @@ public class UnitToAttackInput
 {
   private BattleManager _battleManager;
   private InputManager _inputManager;
-  private CameraMover _cameraMover;
   private Cursor _cursor;
   private Unit _attackingUnit;
   private List<Unit> _enemiesInRange;
   private int _currentEnemy;
+  private bool _setup = false;
 
   public void SetupDependecies(BattleManager battleManager,
                                InputManager inputManager)
@@ -17,34 +17,33 @@ public class UnitToAttackInput
     _cursor = battleManager.Cursor;
     _battleManager = battleManager;
     _inputManager = inputManager;
-    GameObject cameraGO = GameObject.FindGameObjectWithTag("MainCamera");
-
-    if (cameraGO == null)
-    {
-      Debug.LogError("Main Camera wasnt found");
-    }
-
-    _cameraMover = cameraGO.GetComponent<CameraMover>();
   }
 
   public void HandleInput()
   {
+    if (!_setup)
+    {
+      Setup();
+      _setup = true;
+    }
+
     if (_inputManager.SelectDown)
     {
       CombatManager.DefaultCombat(_attackingUnit,
                                   _enemiesInRange[_currentEnemy]);
-      FinishUnitMove();
-      _cameraMover.ResetTarget();
+      _cursor.SelectedUnit.MoveToPreviousPosition();
+      _inputManager.ExecuteUnitMove();
       _inputManager.ResetHistory();
       _inputManager.InputState = InputState.Movement;
       _cursor.enabled = true;
-
+      _setup = false;
     }
     else if (_inputManager.CancelDown)
     {
       UIManager.ShowPreviousButtons();
       _inputManager.GoToPreviousState();
-      _cameraMover.ResetTarget();
+      _inputManager.ResetCamera();
+      _setup = false;
     }
     else if (Input.GetButtonDown("Change Enemy"))
     {
@@ -64,9 +63,8 @@ public class UnitToAttackInput
   }
 
 
-  //use before transitioning from other input state.
   //calculates enemies in range, assigns attacking unit and set ups camera.
-  public void Setup()
+  private void Setup()
   {
     _attackingUnit = _battleManager.BattleMovement.CurrentUnit;
     SetEnemiesInRange(_battleManager.BattleMovement.GetAttackedUnits());
@@ -83,7 +81,7 @@ public class UnitToAttackInput
 
   private void CenterCameraOnEnemy()
   {
-    _cameraMover.ChangeTarget(_enemiesInRange[_currentEnemy].gameObject);
+    _inputManager.SetCameraOn(_enemiesInRange[_currentEnemy].gameObject);
   }
 
   private void FinishUnitMove()
