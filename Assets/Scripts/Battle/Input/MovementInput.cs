@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 
-public class MovementInput : MonoBehaviour
+public class MovementInput
 {
-  [SerializeField] private BattleManager _battleManager;
-  [SerializeField] private InputManager _inputManager;
-  [SerializeField] private ActionMenuInput _actionMenuInput;
+  private BattleManager _battleManager;
+  private InputManager _inputManager;
+  private ActionMenuInput _actionMenuInput;
   private Cursor _cursor;
 
   public void SetupDependecies

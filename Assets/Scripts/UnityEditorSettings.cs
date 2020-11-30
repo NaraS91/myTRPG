@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class UnityEditorSettings : MonoBehaviour
 {
+  public int FPS_LIMIT;
+
   void Start()
   {
-    Application.targetFrameRate = 60;
+    Application.targetFrameRate = FPS_LIMIT;
   }
 }
