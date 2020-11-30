@@ -126,7 +126,7 @@ public class Unit : MonoBehaviour
         yield return null;
       }
 
-      tile.Visit(this);
+      yield return tile.Visit(this);
     }
     UpdateTile();
     isMoving = false;

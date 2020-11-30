@@ -5,12 +5,12 @@ using UnityEngine.UI;
 
 public class Button : MonoBehaviour
 {
-  [SerializeField] private Text _text;
-  [SerializeField] private GameObject _backgroundImage;
-  [SerializeField] private GameObject _hoveredBackgroundImage;
+  [SerializeField] private Text _text = null;
+  [SerializeField] private GameObject _backgroundImage = null;
+  [SerializeField] private GameObject _hoveredBackgroundImage = null;
   //text color represented by 3 rgb float values
-  [SerializeField] private float[] _textRGB;
-  [SerializeField] private float[] _hoveredTextRGB;
+  [SerializeField] private float[] _textRGB = null;
+  [SerializeField] private float[] _hoveredTextRGB = null;
   public EButtonType Type { get; private set; }
 
   //checks if button is valid

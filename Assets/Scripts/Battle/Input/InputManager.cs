@@ -6,7 +6,7 @@ using UnityEngine.Animations;
 [RequireComponent(typeof(BattleManager))]
 public class InputManager : MonoBehaviour
 {
-  [SerializeField] private BattleManager _battleManager;
+  [SerializeField] private BattleManager _battleManager = null;
   private Cursor _cursor;
   private CameraMover _cameraMover;
   public bool MenuIsUp { get; private set; } = false;

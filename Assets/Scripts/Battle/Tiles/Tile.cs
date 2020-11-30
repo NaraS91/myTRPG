@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -124,7 +125,7 @@ public class Tile : MonoBehaviour
   }
 
   //apply any effects the tile has on unit when moved onto
-  public virtual void Visit(Unit unit) { }
+  public virtual IEnumerator Visit(Unit unit) { yield return new WaitForSeconds(0.5f); }
 
   //function designed to be overwritten by childs of Tile class to
   //change default values at Start().

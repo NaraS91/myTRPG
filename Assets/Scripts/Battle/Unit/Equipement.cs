@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Equipement : MonoBehaviour
 {
-  private List<Weapon> _weapons;
+  private List<Weapon> _weapons = new List<Weapon>();
   private int _maxNumberOfWeapons;
   private int _equippedWeapon;
 
