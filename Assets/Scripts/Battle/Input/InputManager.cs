@@ -10,7 +10,7 @@ public class InputManager : MonoBehaviour
   private Cursor _cursor;
   private CameraMover _cameraMover;
   public bool MenuIsUp { get; private set; } = false;
-  public InputState InputState { get; set; } = InputState.Movement;
+  public EInputState InputState { get; set; } = EInputState.Movement;
   public bool SelectDown { get; private set; }
   public bool CancelDown { get; private set; }
   public bool DownDirection { get; private set; }
@@ -28,7 +28,7 @@ public class InputManager : MonoBehaviour
   public UnitToAttackInput UnitToAttackInput { get; private set; }
   //if current input state ends without indicating next one,
   //current input state will be assigned to enxt on the stack
-  private Stack<InputState> _previousStates = new Stack<InputState>();
+  private Stack<EInputState> _previousStates = new Stack<EInputState>();
 
   private void Awake()
   {
@@ -74,13 +74,13 @@ public class InputManager : MonoBehaviour
   {
     switch (InputState)
     {
-      case InputState.Movement:
+      case EInputState.Movement:
         MovementInput.HandleInput();
         break;
-      case InputState.ActionMenu:
+      case EInputState.ActionMenu:
         ActionMenuInput.HandleInput();
         break;
-      case InputState.SelectingUnitToAttack:
+      case EInputState.SelectingUnitToAttack:
         UnitToAttackInput.HandleInput();
         break;
       default:
@@ -99,7 +99,7 @@ public class InputManager : MonoBehaviour
     InputState = _previousStates.Pop();
   }
 
-  public void AddStateToHistory(InputState inputState)
+  public void AddStateToHistory(EInputState inputState)
   {
     _previousStates.Push(inputState);
   }
@@ -187,6 +187,20 @@ public class InputManager : MonoBehaviour
   public void SetCameraOn(GameObject gameObject)
   {
     _cameraMover.ChangeTarget(gameObject);
+  }
+
+  public void ShowViableButtons()
+  {
+    List<string> viableButtons = new List<string>();
+
+    viableButtons.Add("Move");
+
+    if(_battleManager.BattleMovement.GetAttackedUnits().Count > 0)
+    {
+      viableButtons.Add("Attack");
+    }
+
+    UIManager.ShowButtons(viableButtons.Count, viableButtons.ToArray());
   }
 
   public void ResetCamera()

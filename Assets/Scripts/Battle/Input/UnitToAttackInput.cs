@@ -34,7 +34,7 @@ public class UnitToAttackInput
       _cursor.SelectedUnit.MoveToPreviousPosition();
       _inputManager.ExecuteUnitMove();
       _inputManager.ResetHistory();
-      _inputManager.InputState = InputState.Movement;
+      _inputManager.InputState = EInputState.Movement;
       _cursor.enabled = true;
       _setup = false;
     }

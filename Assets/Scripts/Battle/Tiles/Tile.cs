@@ -125,7 +125,7 @@ public class Tile : MonoBehaviour
   }
 
   //apply any effects the tile has on unit when moved onto
-  public virtual IEnumerator Visit(Unit unit) { yield return new WaitForSeconds(0.5f); }
+  public virtual IEnumerator Visit(Unit unit) { yield return new WaitForSeconds(0.1f); }
 
   //function designed to be overwritten by childs of Tile class to
   //change default values at Start().

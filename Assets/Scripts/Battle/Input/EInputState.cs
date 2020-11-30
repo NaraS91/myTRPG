@@ -1,4 +1,4 @@
-﻿public enum InputState
+﻿public enum EInputState
 {
   ActionMenu,
   SelectingUnitToAttack,

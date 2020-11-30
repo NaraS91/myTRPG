@@ -26,11 +26,10 @@ public class MovementInput
           if (!_cursor.HoveredTile.IsOccupied() || 
               _cursor.HoveredTile.Occupier.Equals(_cursor.SelectedUnit))
           {
-            _inputManager.InputState = InputState.ActionMenu;
+            _inputManager.InputState = EInputState.ActionMenu;
             _cursor.enabled = false;
             _cursor.SelectedUnit.Move(_cursor.HoveredTile);
-            //TODO: show only viable buttons
-            UIManager.ShowButtons(2, new string[] { "Move", "Attack" });
+            _inputManager.ShowViableButtons();
           }
           else
           {

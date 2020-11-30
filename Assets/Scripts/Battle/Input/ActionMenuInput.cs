@@ -30,13 +30,13 @@ public class ActionMenuInput
           _cursor.SelectedUnit.MoveToPreviousPosition();
           _inputManager.ExecuteUnitMove();
           UIManager.HideButtons();
-          _inputManager.InputState = InputState.Movement;
+          _inputManager.InputState = EInputState.Movement;
           _cursor.enabled = true;
           break;
         case EButtonType.Attack:
-          _inputManager.AddStateToHistory(InputState.ActionMenu);
+          _inputManager.AddStateToHistory(EInputState.ActionMenu);
           UIManager.HideButtons();
-          _inputManager.InputState = InputState.SelectingUnitToAttack;
+          _inputManager.InputState = EInputState.SelectingUnitToAttack;
          // _unitToAttackInput.Setup();
           break;
         default:
@@ -48,7 +48,7 @@ public class ActionMenuInput
     {
       _cursor.SelectedUnit.MoveToPreviousPosition();
       UIManager.HideButtons();
-      _inputManager.InputState = InputState.Movement;
+      _inputManager.InputState = EInputState.Movement;
       _cursor.enabled = true;
     } else if (_inputManager.DownDirection)
     {
