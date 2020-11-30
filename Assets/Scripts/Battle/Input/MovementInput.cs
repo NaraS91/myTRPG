@@ -4,17 +4,14 @@ public class MovementInput
 {
   private BattleManager _battleManager;
   private InputManager _inputManager;
-  private ActionMenuInput _actionMenuInput;
   private Cursor _cursor;
 
   public void SetupDependecies
-    (BattleManager battleManager, InputManager inputManager,
-     ActionMenuInput actionMenuInput)
+    (BattleManager battleManager, InputManager inputManager)
   {
     _battleManager = battleManager;
     _cursor = _battleManager.Cursor;
     _inputManager = inputManager;
-    _actionMenuInput = actionMenuInput;
   }
 
 

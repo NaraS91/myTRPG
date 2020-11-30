@@ -43,7 +43,7 @@ public class InputManager : MonoBehaviour
     _cameraMover = _battleManager.CameraMover;
     _cursor = _battleManager.Cursor;
     ActionMenuInput.SetupDependecies(_battleManager, this, UnitToAttackInput);
-    MovementInput.SetupDependecies(_battleManager, this, ActionMenuInput);
+    MovementInput.SetupDependecies(_battleManager, this);
     UnitToAttackInput.SetupDependecies(_battleManager, this);
   }
 
