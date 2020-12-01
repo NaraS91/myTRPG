@@ -135,10 +135,6 @@ public class BattleMovementUtils
             distances[tile] = distance + tile.Cost;
           }
         } 
-        else if (tile.IsOccupied())
-        {
-          //TODO: units from different groups meet
-        }
 
       }
     }

@@ -17,9 +17,6 @@ public class InputManager : MonoBehaviour
   public bool UpDirection { get; private set; }
   public bool RightDirection { get; private set; }
   public bool LeftDirection { get; private set; }
-  private float _previousVertical;
-  private float _previousHorizontal;
-  private const float _controllerSensitivity = 0.1f;
 
   private Unit _movingUnit;
  
@@ -120,53 +117,37 @@ public class InputManager : MonoBehaviour
   //TODO: simplify, see "change enemy" button in UnitToAttackInput
   private void ReadVerticalAxis()
   {
-    float verticalAxis = Input.GetAxis("Vertical");
-
     DownDirection = false;
     UpDirection = false;
 
-    if (verticalAxis > _controllerSensitivity)
+    if (Input.GetButtonDown("Vertical"))
     {
-      if (_previousVertical <= _controllerSensitivity)
+      if(Input.GetAxisRaw("Vertical") > 0)
       {
         UpDirection = true;
-      }
-    }
-    else if (verticalAxis < -_controllerSensitivity)
-    {
-      if (_previousVertical >= -_controllerSensitivity)
+      } else
       {
         DownDirection = true;
       }
-    }
-
-    _previousVertical = verticalAxis;
+    } 
   }
 
-  //TODO: simplify, see "change enemy" button in UnitToAttackInput
   private void ReadHorizontalAxis()
   {
-    float horizontalAxis = Input.GetAxis("Horizontal");
-
     LeftDirection = false;
     RightDirection = false;
 
-    if (horizontalAxis > _controllerSensitivity)
+    if (Input.GetButtonDown("Horizontal"))
     {
-      if (_previousHorizontal <= _controllerSensitivity)
+      if (Input.GetAxisRaw("Horizontal") > 0)
       {
         RightDirection = true;
       }
-    }
-    else if (horizontalAxis < -_controllerSensitivity)
-    {
-      if (_previousHorizontal >= -_controllerSensitivity)
+      else
       {
         LeftDirection = true;
       }
     }
-
-    _previousHorizontal = horizontalAxis;
   }
 
   public void ExecuteUnitMove()
