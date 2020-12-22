@@ -1,5 +1,5 @@
 # myTRPG
 trpg in a very early stage
 
-project is not abandoned.
-The big gap in commits is because im working on my character modelling skills for the game
+Project is not abandoned.
+I am focusing more on the game design and art now.
