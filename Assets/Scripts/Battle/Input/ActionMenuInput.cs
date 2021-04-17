@@ -8,6 +8,7 @@ public class ActionMenuInput
   private InputManager _inputManager;
   private UnitToAttackInput _unitToAttackInput;
   private Cursor _cursor;
+  private bool _moving = false;
 
   //call before using this class
   public void SetupDependecies
@@ -22,7 +23,20 @@ public class ActionMenuInput
 
   public void HandleInput()
   {
-    if (_inputManager.SelectDown)
+    if (_moving)
+    {
+      if (_cursor.SelectedUnit.isMoving)
+        return;
+
+      _battleManager.BattleTurnManager.DeactivateUnit(_cursor.SelectedUnit);
+      _inputManager.InputState = EInputState.Movement;
+      _cursor.DeselectUnit();
+      _cursor.SetCursorObjectState(true);
+      _cursor.enabled = true;
+      _inputManager.ResetCamera();
+      _moving = false;
+    }
+    else if (_inputManager.SelectDown)
     {
       switch (UIManager.ActiveButtonType())
       {
@@ -30,8 +44,7 @@ public class ActionMenuInput
           _cursor.SelectedUnit.MoveToPreviousPosition();
           _inputManager.ExecuteUnitMove();
           UIManager.HideButtons();
-          _inputManager.InputState = EInputState.Movement;
-          _cursor.enabled = true;
+          _moving = true;
           break;
         case EButtonType.Attack:
           _inputManager.AddStateToHistory(EInputState.ActionMenu);

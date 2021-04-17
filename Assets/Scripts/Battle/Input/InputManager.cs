@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Animations;
 
 [RequireComponent(typeof(BattleManager))]
 public class InputManager : MonoBehaviour
@@ -19,7 +17,6 @@ public class InputManager : MonoBehaviour
   public bool LeftDirection { get; private set; }
 
   private Unit _movingUnit;
- 
   public ActionMenuInput ActionMenuInput { get; private set;}
   public MovementInput MovementInput { get; private set; }
   public UnitToAttackInput UnitToAttackInput { get; private set; }
@@ -47,19 +44,8 @@ public class InputManager : MonoBehaviour
   // Update is called once per frame
   void Update()
   {
-    if (_movingUnit == null)
-    {
-      ReadInput();
-      HandleInput();
-    } 
-    else if (!_movingUnit.isMoving)
-    {
-      _movingUnit = null;
-      _cursor.SetCursorObjectState(true);
-      ResetCamera();
-      _battleManager.BattleTurnManager.DeactivateUnit(_cursor.SelectedUnit);
-      _cursor.DeselectUnit();
-    }
+    ReadInput();
+    HandleInput();
   }
 
   public void WaitForMovingUnit(Unit unit)

@@ -10,6 +10,7 @@ public class UnitToAttackInput
   private List<Unit> _enemiesInRange;
   private int _currentEnemy;
   private bool _setup = false;
+  private bool _moving = false;
 
   public void SetupDependecies(BattleManager battleManager,
                                InputManager inputManager)
@@ -27,16 +28,27 @@ public class UnitToAttackInput
       _setup = true;
     }
 
-    if (_inputManager.SelectDown)
+    if (_moving)
     {
+      if (_attackingUnit.isMoving)
+        return;
+
+      _moving = false;
       CombatManager.DefaultCombat(_attackingUnit,
-                                  _enemiesInRange[_currentEnemy]);
-      _cursor.SelectedUnit.MoveToPreviousPosition();
-      _inputManager.ExecuteUnitMove();
+                            _enemiesInRange[_currentEnemy]);
       _inputManager.ResetHistory();
       _inputManager.InputState = EInputState.Movement;
       _cursor.enabled = true;
+      _cursor.SetCursorObjectState(true);
+      _inputManager.ResetCamera();
+      _battleManager.BattleTurnManager.DeactivateUnit(_attackingUnit);
+      _cursor.DeselectUnit();
       _setup = false;
+    } else if (_inputManager.SelectDown)
+    {
+      _cursor.SelectedUnit.MoveToPreviousPosition();
+      _inputManager.ExecuteUnitMove();
+      _moving = true;
     }
     else if (_inputManager.CancelDown)
     {
