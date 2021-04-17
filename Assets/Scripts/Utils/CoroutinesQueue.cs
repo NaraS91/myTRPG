@@ -8,6 +8,7 @@ namespace Assets.Scripts.Utils
   public class CoroutinesQueue : MonoBehaviour
   {
     private Queue<IEnumerator> _coroutines = new Queue<IEnumerator>();
+    public bool Running { get; private set; } = false;
 
     public void add(IEnumerator coroutine)
     {
@@ -16,15 +17,17 @@ namespace Assets.Scripts.Utils
 
     public IEnumerator start()
     {
+      if (Running)
+        yield return null;
+
+      Running = true;
+
       while (_coroutines.Count > 0)
         yield return StartCoroutine(_coroutines.Dequeue());
 
-      yield return null;
-    }
+      Running = false;
 
-    public bool isEmpty()
-    {
-      return _coroutines.Count == 0;
+      yield return null;
     }
   }
 }
