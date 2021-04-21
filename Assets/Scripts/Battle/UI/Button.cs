@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,6 +12,17 @@ public class Button : MonoBehaviour
   //text color represented by 3 rgb float values
   [SerializeField] private float[] _textRGB = null;
   [SerializeField] private float[] _hoveredTextRGB = null;
+
+  private static Dictionary<string, EButtonType> stringMapping
+    = new Dictionary<string, EButtonType>
+    {
+      {"attack", EButtonType.Attack},
+      {"move", EButtonType.Move },
+
+      {"add tiles", EButtonType.AddTiles },
+      {"add unit", EButtonType.AddUnit }
+    };
+
   public EButtonType Type { get; private set; }
 
   //checks if button is valid
@@ -49,9 +61,9 @@ public class Button : MonoBehaviour
 
   public void SetText(string text)
   {
-    if (Enum.TryParse<EButtonType>(text, out EButtonType parsedType))
+    if (stringMapping.ContainsKey(text.ToLower()))
     {
-      Type = parsedType;
+      Type = stringMapping[text.ToLower()];
     } else
     {
       Debug.LogError("Parsing did not succeed");

@@ -1,5 +1,9 @@
-﻿public enum EButtonType
+﻿using System.ComponentModel;
+
+public enum EButtonType
 {
   Move,
-  Attack
+  Attack,
+  AddTiles,
+  AddUnit
 }
