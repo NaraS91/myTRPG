@@ -100,7 +100,6 @@ public class InputManager : MonoBehaviour
     ReadVerticalAxis();
   }
 
-  //TODO: simplify, see "change enemy" button in UnitToAttackInput
   private void ReadVerticalAxis()
   {
     DownDirection = false;

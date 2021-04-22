@@ -6,21 +6,29 @@ using UnityEngine.UI;
 
 public class Button : MonoBehaviour
 {
-  [SerializeField] private Text _text = null;
-  [SerializeField] private GameObject _backgroundImage = null;
-  [SerializeField] private GameObject _hoveredBackgroundImage = null;
+  [SerializeField]
+  private Text _text = null;
+  [SerializeField]
+  private GameObject _backgroundImage = null;
+  [SerializeField]
+  private GameObject _hoveredBackgroundImage = null;
   //text color represented by 3 rgb float values
-  [SerializeField] private float[] _textRGB = null;
-  [SerializeField] private float[] _hoveredTextRGB = null;
+  [SerializeField]
+  private float[] _textRGB = null;
+  [SerializeField]
+  private float[] _hoveredTextRGB = null;
 
   private static Dictionary<string, EButtonType> stringMapping
     = new Dictionary<string, EButtonType>
     {
       {"attack", EButtonType.Attack},
-      {"move", EButtonType.Move },
+      {"move", EButtonType.Move},
 
-      {"add tiles", EButtonType.AddTiles },
-      {"add unit", EButtonType.AddUnit }
+      {"map dimensions", EButtonType.MapDimensions},
+      {"default tile", EButtonType.DefaultTile},
+      {"add/remove rows/columns", EButtonType.EditRowsColumns},
+      {"edit mode", EButtonType.EditMode},
+      {"save", EButtonType.Save}
     };
 
   public EButtonType Type { get; private set; }

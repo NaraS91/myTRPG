@@ -49,3 +49,4 @@ MonoBehaviour:
     type: 3}
   X_RESOLUTION: 1920
   Y_RESOLUTION: 1080
+  BASE_OFFSET: 150

@@ -4,6 +4,9 @@ public enum EButtonType
 {
   Move,
   Attack,
-  AddTiles,
-  AddUnit
+  MapDimensions,
+  DefaultTile,
+  EditRowsColumns,
+  EditMode,
+  Save
 }
