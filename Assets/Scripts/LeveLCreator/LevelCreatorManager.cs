@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
+[RequireComponent(typeof(LevelCreatorInputManager))]
 public class LevelCreatorManager : MonoBehaviour
 {
   [SerializeField]
   private GameObject _simpleMenuPrefab;
+  private LevelCreatorInputManager _inputManager;
   private string[] _buttonNames =
   {
     "Map Dimensions",
@@ -17,11 +18,16 @@ public class LevelCreatorManager : MonoBehaviour
   };
   private SimpleMenu _menu;
 
-  // Start is called before the first frame update
-  void Start()
+  private void Awake()
   {
     _menu = Instantiate(_simpleMenuPrefab).GetComponent<SimpleMenu>();
     _menu.Init("Level Creator", _buttonNames);
+    _inputManager = GetComponent<LevelCreatorInputManager>();
+  }
+
+  void Start()
+  {
+    _inputManager.Init(_menu);
   }
 
   // Update is called once per frame

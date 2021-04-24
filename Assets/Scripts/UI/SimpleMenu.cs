@@ -27,15 +27,15 @@ public class SimpleMenu : MonoBehaviour
 
   public void Update()
   {
-    handleInput();
+    HandleInput();
   }
 
-  public EButtonType getActiveButton()
+  public EButtonType GetActiveButton()
   {
     return _buttons[_activeButton].Type;
   }
 
-  private void handleInput()
+  private void HandleInput()
   {
     if (Input.GetButtonDown("Vertical"))
     {
