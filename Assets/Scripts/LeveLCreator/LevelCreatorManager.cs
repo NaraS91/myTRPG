@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class LevelCreatorController : MonoBehaviour
+public class LevelCreatorManager : MonoBehaviour
 {
   [SerializeField]
   private GameObject _simpleMenuPrefab;
