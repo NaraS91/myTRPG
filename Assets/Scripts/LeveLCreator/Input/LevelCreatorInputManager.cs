@@ -6,14 +6,14 @@ using UnityEngine;
 
 public class LevelCreatorInputManager : MonoBehaviour
 {
-  private SimpleMenu _menu = null;
+  private SimpleMenu _menu;
   private bool initialized = false;
   private Tile[,] _mapTiles;
   private GameObject _map;
-  [SerializeField]
-  private GameObject preFab;
+  private LevelCreatorActions _levelCreatorActions;
+  private GameObject _mapCreationCanGO;
 
-  public void Init(SimpleMenu menu)
+  public void Init(SimpleMenu menu, GameObject mapCreationCan)
   {
     if (initialized)
       return;
@@ -22,16 +22,18 @@ public class LevelCreatorInputManager : MonoBehaviour
     enabled = true;
     initialized = true;
     _map = new GameObject("map");
+
+    _mapCreationCanGO = mapCreationCan;
   }
 
   private void Awake()
   {
     enabled = false;
+    _levelCreatorActions = gameObject.AddComponent<LevelCreatorActions>();
   }
 
   private void Start()
   {
-    CreateMap(15, 15, preFab);
   }
 
   // Update is called once per frame
@@ -55,23 +57,13 @@ public class LevelCreatorInputManager : MonoBehaviour
     }
   }
 
-  private void HandleMapDimension()
+  public void DelegateMapCreation(int x, int y, GameObject tile)
   {
-
+    _mapTiles = _levelCreatorActions.CreateMap(x, y, _mapTiles, _map, tile);
   }
 
-  private void CreateMap(int x, int y, GameObject tile)
+  private void HandleMapDimension()
   {
-    _mapTiles = new Tile[x, y];
-
-    for(int i = 0; i < x; i++)
-    {
-      for(int j = 0; j < y; j++)
-      {
-        GameObject t = Instantiate(tile, _map.transform);
-        _mapTiles[i, j] = t.GetComponent<Tile>();
-        t.transform.position = new Vector3(i * _mapTiles[i, j].Width, 0, j * _mapTiles[i, j].Length);
-      }
-    }
+    _mapCreationCanGO.SetActive(true);
   }
 }
