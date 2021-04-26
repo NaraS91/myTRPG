@@ -34,6 +34,7 @@ public class BattleManager : MonoBehaviour
     CameraMover = mainCameraGO.GetComponent<CameraMover>();
     DefaultOverlay = Cursor.Overlay;
     FindAllTiles();
+    InitTiles();
   }
 
   // Start is called before the first frame update
@@ -52,6 +53,14 @@ public class BattleManager : MonoBehaviour
     
     
     
+  }
+
+  private void InitTiles()
+  {
+    foreach(Tile tile in MapTiles)
+    {
+      tile.FindAdjacentTiles();
+    }
   }
 
   //initialises and populates MapTiles [0,0] is in the left bottom corner

@@ -108,5 +108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52bc50ab6cb9ab3489b38fbd1b0c6ac6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <Width>k__BackingField: 1
+  <Length>k__BackingField: 1
   Overlay: {fileID: 1517625967664799914, guid: 73cb40278d759f44288d85940b30917d, type: 3}
   OverlayMeshRenderer: {fileID: 0}

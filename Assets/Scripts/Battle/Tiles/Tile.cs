@@ -6,6 +6,10 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
+  [field: SerializeField]
+  public int Width { get; private set; }
+  [field: SerializeField]
+  public int Length { get; private set; }
   public bool Walkable { get; protected set; } = true;
   public bool Flyable { get; protected set; } = true;
   public bool Current { get; protected set; } = false;
@@ -23,8 +27,8 @@ public class Tile : MonoBehaviour
   void Start()
   {
     SetProperties();
-    FindAdjacentTiles();
-    Overlay = Instantiate(BattleManager.DefaultOverlay, transform);
+
+    Overlay = Instantiate(Overlay, transform);
     Overlay.transform.position = transform.position;
     Overlay.SetActive(false);
     OverlayMeshRenderer = Overlay.GetComponentInChildren<MeshRenderer>();
@@ -95,7 +99,9 @@ public class Tile : MonoBehaviour
   }
 
 
-  private void FindAdjacentTiles()
+  //run in battlemanager
+  //TODO: refactor later, its sh.t
+  public  void FindAdjacentTiles()
   {
     int x = (int) transform.position.x;
     int z = (int) transform.position.z;
