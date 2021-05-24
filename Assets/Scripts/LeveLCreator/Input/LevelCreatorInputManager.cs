@@ -28,8 +28,10 @@ public class LevelCreatorInputManager : MonoBehaviour
 
   private void Awake()
   {
+    /*
     enabled = false;
     _levelCreatorActions = gameObject.AddComponent<LevelCreatorActions>();
+    */
   }
 
   private void Start()
@@ -39,7 +41,7 @@ public class LevelCreatorInputManager : MonoBehaviour
   // Update is called once per frame
   void Update()
   {
-    HandleInput();
+   // HandleInput();
   }
 
   private void HandleInput()

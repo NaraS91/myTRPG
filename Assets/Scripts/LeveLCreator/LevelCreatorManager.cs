@@ -24,16 +24,16 @@ public class LevelCreatorManager : MonoBehaviour
   private SimpleMenu _menu;
 
   private void Awake()
-  {
+  {/*
     _menu = Instantiate(_simpleMenuPrefab).GetComponent<SimpleMenu>();
     _menu.Init("Level Creator", _buttonNames);
-    _inputManager = GetComponent<LevelCreatorInputManager>();
+    _inputManager = GetComponent<LevelCreatorInputManager>();*/
     //InitMapCreationMenu();
   }
 
   void Start()
   {
-    _inputManager.Init(_menu, _mapCreationCanGO);
+    //_inputManager.Init(_menu, _mapCreationCanGO);
   }
 
   // Update is called once per frame
