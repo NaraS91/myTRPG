@@ -9,10 +9,9 @@ public class GridCreationWindow : EditorWindow
   const int COLUMNS_LIMIT = 20;
   const string TILE_PATH = "Prefabs/Tiles/Tile";
 
-  int rowsCount = 0;
-  int columsCount = 0;
+  int _rowsCount = 0;
+  int _columsCount = 0;
 
-  // Add menu item named "My Window" to the Window menu
   [MenuItem("Tools/create a grid")]
   public static void ShowWindow()
   {
@@ -23,14 +22,14 @@ public class GridCreationWindow : EditorWindow
   void OnGUI()
   {
     GUILayout.Label("Grid Creation", EditorStyles.boldLabel);
-    rowsCount = EditorGUILayout.IntField("Rows", rowsCount);
-    columsCount = EditorGUILayout.IntField("Columns", columsCount);
+    _rowsCount = EditorGUILayout.IntField("Rows", _rowsCount);
+    _columsCount = EditorGUILayout.IntField("Columns", _columsCount);
 
     if (GUILayout.Button("create"))
     {
       GameObject tile = Resources.Load(TILE_PATH) as GameObject;
-      if(0 < columsCount && columsCount <= COLUMNS_LIMIT &&
-         0 < rowsCount && rowsCount <= ROWS_LIMIT)
+      if(0 < _columsCount && _columsCount <= COLUMNS_LIMIT &&
+         0 < _rowsCount && _rowsCount <= ROWS_LIMIT)
       {
         CreateGrid(tile);
       }
@@ -41,8 +40,8 @@ public class GridCreationWindow : EditorWindow
   {
     GameObject map = Instantiate(new GameObject("Map"));
 
-    int height = rowsCount;
-    int width = columsCount;
+    int height = _rowsCount;
+    int width = _columsCount;
 
     for (int i = 0; i < width; i++)
     {
