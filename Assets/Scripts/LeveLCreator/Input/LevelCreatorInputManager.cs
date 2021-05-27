@@ -61,7 +61,7 @@ public class LevelCreatorInputManager : MonoBehaviour
 
   public void DelegateMapCreation(int x, int y, GameObject tile)
   {
-    _mapTiles = _levelCreatorActions.CreateMap(x, y, _mapTiles, _map, tile);
+    _mapTiles = LevelCreatorActions.CreateMap(x, y, _mapTiles, _map, tile);
   }
 
   private void HandleMapDimension()

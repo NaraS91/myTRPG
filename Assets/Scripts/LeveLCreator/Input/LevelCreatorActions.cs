@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LevelCreatorActions : MonoBehaviour
 {
-  public Tile[,] CreateMap(int x, int y, Tile[,] mapTiles, GameObject map, GameObject tileGO)
+  public static Tile[,] CreateMap(int x, int y, Tile[,] mapTiles, GameObject map, GameObject tileGO)
   {
     if (mapTiles != null) 
     {

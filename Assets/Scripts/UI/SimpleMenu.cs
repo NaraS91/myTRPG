@@ -8,15 +8,15 @@ public class SimpleMenu : MonoBehaviour
   private bool init = false;
 
   [SerializeField]
-  private GameObject _menuPrefab;
+  private GameObject _menuPrefab = default;
   [SerializeField]
-  private GameObject _buttonPrefab;
+  private GameObject _buttonPrefab = default;
   [SerializeField]
-  private int X_RESOLUTION;
+  private int X_RESOLUTION = default;
   [SerializeField]
-  private int Y_RESOLUTION;
+  private int Y_RESOLUTION = default;
   [SerializeField]
-  private int BASE_OFFSET;
+  private int BASE_OFFSET = default;
   private const int GAP = 80;
   private GameObject _canvasGO;
 
