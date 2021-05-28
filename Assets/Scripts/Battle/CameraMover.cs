@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CameraMover : MonoBehaviour
 {
+  [SerializeField]
+  private float smoothness = 2f; 
   private Vector3 _defaultOffset;
   private GameObject _cursor;
   private GameObject _target;
@@ -21,11 +23,10 @@ public class CameraMover : MonoBehaviour
     _target = _cursor;
   }
 
-  // Update is called once per frame
-  void Update()
+  void FixedUpdate()
   {
-    transform.position 
-      = _defaultOffset + _target.transform.position + _extraOffset;
+    var targetPosition = _defaultOffset + _target.transform.position + _extraOffset;
+    transform.position = Vector3.Lerp(transform.position, targetPosition, smoothness * Time.fixedDeltaTime);
   }
 
 

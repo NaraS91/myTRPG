@@ -15,7 +15,7 @@ public static class UIManager
   private const int Y_POS_BUTTON = 90;
   private const int GAP_BETWEEN_BUTTONS = 10;
   private static readonly int[] BUTTON_RESOLUTION = { 300, 70 };
-  private const string BUTTON_PATH = "Prefabs/UI/Button/Button";
+  private const string BUTTON_PATH = "Prefabs/UI/Button/CustomButton";
 
   static UIManager()
   {
